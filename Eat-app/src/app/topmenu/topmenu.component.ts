@@ -158,7 +158,6 @@ export class TopmenuComponent implements OnInit {
     });
   }
 
-
   exitLogin() {
     firebase.auth().signOut().then(() => {
       localStorage.removeItem('at');
@@ -172,7 +171,6 @@ export class TopmenuComponent implements OnInit {
       console.log(error);
     });
   }
-
 
   openModalRecepient() {
     this.addrecepi = true;

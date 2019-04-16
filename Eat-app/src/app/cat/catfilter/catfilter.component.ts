@@ -15,6 +15,7 @@ export class CatfilterComponent implements OnInit {
 
   @Output() searchEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() resetSearch: EventEmitter<any> = new EventEmitter<any>();
+  @Input()  listCartId: any;
 
 
   public selectedCategory: string;
@@ -22,8 +23,8 @@ export class CatfilterComponent implements OnInit {
   private conunter: any;
   public rndNum: any;
   public selected: any;
-  @Input() public listCartId: any;
-  // public searhresult: any;
+  public filterblock: boolean;
+ 
 
 
   constructor(
@@ -37,9 +38,6 @@ export class CatfilterComponent implements OnInit {
   resetSearchforMenu() {
     this.resetSearch.emit(null);
     this.titleFilterValue = null;
-    // this.selectedCategory = null;
-    // this.selected = null;
-    console.log(this.selectedCategory);
   }
   categoryChanged(selectedItem) {
     this.selectedCategory = selectedItem;
@@ -63,8 +61,16 @@ export class CatfilterComponent implements OnInit {
     this.searchEvent.emit(null);
   }
 
+  scrollEvent = (event: any): void => {
+    if (event.srcElement.scrollingElement.scrollTop > 169) {
+      this.filterblock = true;
+    } else {
+      this.filterblock = false;
+    }
+  }
 
 
   ngOnInit() {
+    window.addEventListener('scroll', this.scrollEvent, true);
   }
 }

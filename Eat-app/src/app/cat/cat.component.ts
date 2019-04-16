@@ -144,9 +144,11 @@ export class CatComponent implements OnInit {
       }
       this.viewCartList = this.getUnique(this.viewCartList, "Id");
       this.stopinterscroll = true;
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
     else {
       this.resetSearchAll();
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       // console.log("Поиск - 0, категория 0")
     }
     this.result = [];
@@ -260,6 +262,7 @@ export class CatComponent implements OnInit {
       localStorage.setItem(dayNum, this.modalId);
     }
   }
+
 
 
   ngOnInit() {

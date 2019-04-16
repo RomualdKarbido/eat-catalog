@@ -14,7 +14,7 @@
     align-items: center;
   }
   &__center {
-    height: 30px;
+    // height: 30px;
     position: relative;
     display: flex;
     align-items: center;
@@ -63,6 +63,7 @@
     &.active {
       background: rgba(0, 0, 0, 0.6);
       padding: $sp $sp;
+      height: 80px;
       .header__center-logo {
         display: block;
         animation: logo  .3s;
