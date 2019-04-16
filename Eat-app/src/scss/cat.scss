@@ -76,7 +76,7 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     &:nth-child(3n) {
       margin-right: 0;
     }
-
+    //открытая карточка
     &.big {
       min-width: 100%;
       display: flex;
@@ -102,12 +102,20 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
           }
           &_two {
             padding-bottom: 0;
+            .cat__title {
+              font-size: 30px;
+            }
           }
           
         }
         &__text {
           margin-bottom: $sp/2;
           display: none;
+        }
+        &__list {
+          &-item {
+            margin-bottom: 2px;
+          }
         }
       }
       .cat__text_big {

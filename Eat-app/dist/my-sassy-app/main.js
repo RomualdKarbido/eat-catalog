@@ -1522,7 +1522,6 @@ var CatComponent = /** @class */ (function () {
         this.catservice = catservice;
         this.activatedRoute = activatedRoute;
         this.db = db;
-        this.eatMassAll = [];
         this.modaldays = [
             { name: 'Пн', value: 'day1' },
             { name: 'Вт', value: 'day2' },
@@ -1739,10 +1738,6 @@ var CatComponent = /** @class */ (function () {
     CatComponent.prototype.ngOnInit = function () {
         this.parseCatList();
         this.preloader = true;
-        // this.eatMassAll = [];
-        // this.getJsonService.resetCounterService();
-        // this.showConfigResponse();
-        // this.resetSearch();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_catfilter_catfilter_component__WEBPACK_IMPORTED_MODULE_1__["CatfilterComponent"]),
@@ -3129,7 +3124,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/romanarsenev/work/Eat/Eat-app/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/romanarsenev/work/Eat/git/Eat-app/src/main.ts */"./src/main.ts");
 
 
 /***/ })
