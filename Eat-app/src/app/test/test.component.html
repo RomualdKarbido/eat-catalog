@@ -1,0 +1,20 @@
+<div style="background: white; max-width: 1200px; margin: 0 auto; padding: 20px; border-radius: 20px;">
+
+
+  <div *ngFor="let user of users">
+    {{user.useremail}}
+    <div *ngFor="let item of user.mymeny">
+      {{item}}
+    </div>
+
+  </div>
+  <hr>
+<!--  <div *ngFor="let item of books">-->
+<!--  {{item.Name}}-->
+<!--  </div>-->
+
+  <div class="btn" (click)="writeUserData(300, 'mail@ru.ru', [10, 30, 40])">Записать данные</div>
+
+  <div class="btn" (click)="getWeek()">получить неделю</div>
+
+</div>

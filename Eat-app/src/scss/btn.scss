@@ -1,0 +1,29 @@
+.btn {
+  background: $green;
+  color: white;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 $sp !important;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  outline: none;
+  // height: 60px;
+  &:hover {
+    background: black;
+  }
+  .mdi {
+    font-size: 22px;
+    margin-right: $sp/2;
+  }
+  &_dark {
+    background: #AE9671;
+    &:hover {
+      background: black;
+    }
+  }
+}

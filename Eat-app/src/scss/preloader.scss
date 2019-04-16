@@ -1,0 +1,24 @@
+.preloader {
+  //background: balack;
+  height: 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  &__status {
+    height: 100%;
+    width: 0;
+    background:  red;
+    animation: preloaded 3s infinite ease-in-out;
+  }
+}
+
+@keyframes preloaded {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

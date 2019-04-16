@@ -1,0 +1,111 @@
+input, textarea {
+  border-radius: 10px;
+  background: #F6F6F6;
+  background: white;
+  border: 1px solid #DDDDDD;
+  padding: 20px 20px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  &::placeholder {
+    color: #a5a7a9;;
+  }
+}
+
+//mdi select
+
+.cdk-overlay-container {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+
+.mat-form-field {
+  display: block;
+  width: 100%;
+}
+
+.cdk-overlay-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .4s cubic-bezier(.25, .8, .25, 1);
+  opacity: 0;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.mat-select-panel-wrap {
+  flex-basis: 100%;
+}
+
+.mat-select-panel {
+  min-width: 112px;
+  max-width: 280px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 0;
+  padding-bottom: 0;
+  max-height: 256px;
+  min-width: 100%;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.mat-form-field-infix {
+  @extend input;
+}
+.mat-form-field-label {
+  padding-left: $sp;
+  color: #a5a7a9;
+}
+
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  display: none !important;
+
+}
+.mat-selected {
+  background: #AE9671;
+  color: white;
+  &:hover {
+    background: #AE9671 !important;
+    color: white !important;
+  }
+}
+.mat-option {
+  transition: 0.3s all;
+  &:hover {
+    background: rgba(0,0,0,.04);
+    color: rgba(0,0,0,.87);
+  }
+}

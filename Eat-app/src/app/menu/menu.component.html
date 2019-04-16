@@ -1,0 +1,119 @@
+<div class="weekfilter">
+  <div class="weekfilter__header">
+    <div class="weekfilter__header-item weekfilter__header-item_itemo" (click)="tabsweek('day0')"
+      [class.active]="activeweekday=='day0'">Неделя
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item1" (click)="tabsweek('day1')"
+      [class.active]="activeweekday=='day1'">Пн
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item2" (click)="tabsweek('day2')"
+      [class.active]="activeweekday=='day2'">Вт
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item3" (click)="tabsweek('day3')"
+      [class.active]="activeweekday=='day3'">Ср
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item4" (click)="tabsweek('day4')"
+      [class.active]="activeweekday=='day4'">Чт
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item5" (click)="tabsweek('day5')"
+      [class.active]="activeweekday=='day5'">Пт
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item6" (click)="tabsweek('day6')"
+      [class.active]="activeweekday=='day6'">Сб
+    </div>
+    <div class="weekfilter__header-item weekfilter__header-item_item7" (click)="tabsweek('day7')"
+      [class.active]="activeweekday=='day7'">Вс
+    </div>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="activeweekday == 'day0' && weekOn"> -->
+
+<div class="menu__forweek" [ngClass]="{'menu__forweek-print': printver}">
+
+  <div class="menu__forweek-btn" *ngIf="activeweekday == 'day0' && auth">
+    <div class="btn">Cписок продуктов<i class="mdi mdi-shopping"></i></div>
+    <div class="btn">Очистить меню<i class="mdi mdi-close"></i></div>
+    <div class="btn" (click)="ptintversion()" [ngClass]="{'active': printver}">Версия для печати<i
+        class="mdi mdi-printer"></i></div>
+  </div>
+
+  <div class="menu__message" *ngIf="!auth">
+    <div>
+      <h2>Для выбора блюда необходимо зарегистрироваться.</h2>
+      <p>Пока вы можете просмотреть предлагаемые блюда в разделе "Каталог блюд".</p>
+      <div class="menu__message_btn-wrap">
+        <div routerLink="/" class="btn menu__message_btn">Перейти в раздел Каталог блюд</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let onedayweek of massForWeek">
+
+    <div class="menu__message" *ngIf="onedayweek.dayvalue == activeweekday && onedayweek.idcart.length == 0">
+      <div>
+        <h2>Вы еще не выбрали ни одного блюда.</h2>
+        <p>Перейдите в раздел "Каталог блюд" и сделайте свой выбор.</p>
+        <div class="menu__message_btn-wrap">
+          <div routerLink="/" class="btn menu__message_btn">Перейти в раздел Каталог блюд</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="menu menu_list" *ngIf="activeweekday == onedayweek.dayvalue || activeweekday == 'day0'">
+
+      <!-- <div class="menu__forweek-title" *ngIf="printver">{{onedayweek.day}}</div> -->
+      <div class="menu__cart" *ngFor="let idcart of onedayweek.idcart">
+        <div class="menu__cart-left" [ngStyle]="{'background-image': idcart.Img}"></div>
+        <div class="menu__cart-right">
+          <div class="menu__cart-btn menu__cart-btn_minus" (click)="removeCart(idcart.Id, onedayweek.dayvalue)"><i
+              class="mdi mdi-minus"></i>
+          </div>
+          <div class="menu__cart-btn menu__cart-btn_plus" (click)="openmodal(idcart.Id)"><i class="mdi mdi-plus"></i>
+          </div>
+          <div class="menu__cart-btn menu__cart-btn_week">{{onedayweek.dayshort}}</div>
+          <div class="menu__cart-title">{{idcart.Name}}</div>
+          <div class="menu__cart-category-wrap">
+            <div class="menu__cart-category">{{idcart.Category}} {{idcart.Id}}</div>
+            <div class="menu__cart-category menu__cart-category_time">Время приготовления: {{idcart.Time}} мин.</div>
+          </div>
+          <div class="menu__cart-textwrap">
+            <div class="menu__cart-textleft">
+              <div class="menu__cart-textleft-title">Приготовление</div>
+              <div *ngFor="let comment of idcart.Comment" class="menu__cart-textleft-text">
+                {{comment}}
+              </div>
+            </div>
+            <div class="menu__cart-textright">
+              <div class="menu__cart-textleft-title">Продукты</div>
+              <div *ngFor="let product of idcart.Ingredients" class="menu__cart-string">
+
+                <div class="menu__cart-textright-title">{{product[0]}}</div>
+                <div class="menu__cart-textright-value">{{product[1]}}</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="cart__modal-wrap" *ngIf="modal && eatMassAll && eatMassAll.length > 0">
+  <div class="cart__modal">
+    <div class="cart__modal-close" (click)="closemodal()"><i class="mdi mdi-close"></i></div>
+    <!-- <div class="cart__modal-title">{{sortresult[0].Name}}</div> -->
+    <div class="cart__modal-text">В какой день добавить блюдо?</div>
+
+    <div class="cart__modal-week">
+      <div class="cart__modal-day" *ngFor="let day of modaldays" (click)="addItemForDifferentrDay(day.value)"
+        [routerLink]="['/menu', day.value]">
+        {{day.name}}
+      </div>
+    </div>
+  </div>
+</div>

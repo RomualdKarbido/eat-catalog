@@ -1,0 +1,62 @@
+@media print and (color) {
+  .header, .weekfilter {
+    display: none !important;
+  }
+
+  .menu {
+    max-width: 80% !important;
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+
+    &__forweek-btn {
+      display: none !important;
+    }
+
+    &__cart {
+      border-radius: 0 !important;
+      background: none;
+      border-top: 1px dotted gray !important;
+      box-shadow: none !important;
+      margin-bottom: 0 !important;
+
+      &-title {
+        font-size: 22px !important;
+      }
+
+      &-right {
+        padding: 20px 0 !important;
+      }
+
+      &-btn_week {
+        right: 0px !important;
+      }
+
+      &-category {
+        background: none !important;
+        padding-left: 0px !important;
+      }
+
+      &-textleft-text {
+        font-size: 14px !important;
+      }
+
+      &-string {
+        font-size: 14px !important;
+      }
+
+      &-textright-title, &-textright-value {
+        font-size: 10px !important;
+      }
+
+    }
+    &_list {
+      margin-bottom: 0 !important;
+    }
+
+    &__forweek-title {
+      text-align: left !important;
+      max-width: 1200px !important;
+      margin: 0 auto 10px !important;
+    }
+  }
+}

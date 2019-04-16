@@ -1,0 +1,52 @@
+<div class="cart" *ngIf="sortresult">
+
+  <div class="cart__btns">
+    <div class="cart__btn cart__btn_back" (click)="backClicked()"><i class="mdi mdi-arrow-left"></i></div>
+    <a class="cart__btn cart__btn_add" (click)="openmodal()"><i class="mdi mdi-plus"></i></a>
+  </div>
+
+  <div class="cart__left">
+    <div class="cart__img" [ngStyle]="{'background-image': sortresult.Img}"></div>
+    <div class="cart__time">{{sortresult.Time}} мин.</div>
+  </div>
+  <div class="cart__right">
+    <div class="cart__title">{{sortresult.Name}} </div>
+    <div class="cart__category">
+      <div class="cart__category-value">
+        {{sortresult.Category}}
+        {{sortresult.Id}}
+      </div>
+    </div>
+    <div class="cart__text">
+      <div class="cart__text-title">Приготовление: <span>{{sortresult.Time}} мин.</span></div>
+      <div class="cart__text-text" *ngFor="let comm of sortresult.Comment">
+        {{comm}}
+      </div>
+    </div>
+    <div class="cart__list">
+      <div class="cart__text-title">Ингридиенты</div>
+      <div class="cart__text-ing" *ngFor="let product of sortresult.Ingredients">
+        <div class="cart__text-ing-title">{{product[0]}} </div>
+        <div class="cart__text-ing-value">{{product[1]}} </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="cart__modal-wrap" *ngIf="modal">
+  <div class="cart__modal">
+    <div class="cart__modal-close" (click)="closemodal()"><i class="mdi mdi-close"></i></div>
+    <div class="cart__modal-title">{{sortresult.Name}}</div>
+    <div class="cart__modal-text">В какой день добавить блюдо?</div>
+
+    <div class="cart__modal-week">
+      <div class="cart__modal-day" *ngFor="let day of modaldays" (click)="addMineMenu(day.value)"
+        [routerLink]="['/menu', day.value]">
+        {{day.name}}
+      </div>
+    </div>
+  </div>
+</div>

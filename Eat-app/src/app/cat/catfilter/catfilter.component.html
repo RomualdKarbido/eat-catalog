@@ -1,0 +1,36 @@
+<div class="cat-filter">
+  <div class="cat-filter__item-wrap">
+    <div class="cat-filter__item">
+      <div class="cat-filter__item_search">
+        <input type="text" placeholder="Поиск" [(ngModel)]="titleFilterValue" (keyup.enter)="hasAnyFilterValue()">
+        <button class="cat-filter__item_search-btn" (click)="hasAnyFilterValue()"><i class="mdi mdi-magnify"></i></button>
+        <button class="cat-filter__item_search-btn cat-filter__item_search-btn_close" (click)="resetSearchforMenu()"><i class="mdi mdi-close"></i></button>
+      </div>
+    </div>
+    <div class="cat-filter__item">
+      <mat-form-field>
+        <mat-select [(value)]="selected" placeholder="Все блюда" (valueChange)="categoryChanged($event)" >
+          <mat-option>Все блюда</mat-option>
+          <mat-option value="Завтраки">Завтраки</mat-option>
+          <mat-option value="Супы">Супы</mat-option>
+          <mat-option value="Салаты">Салаты</mat-option>
+          <mat-option value="Второе">Второе</mat-option>
+          <mat-option value="Целые блюда">Целые блюда</mat-option>
+          <mat-option value="Гарниры">Гарниры</mat-option>
+          <mat-option value="Выпечка сладкая">Выпечка сладкая</mat-option>
+          <mat-option value="Выпечка несладкая">Выпечка несладкая</mat-option>
+          <mat-option value="Закуски">Закуски</mat-option>
+          <mat-option value="Напитки">Напитки</mat-option>
+          <mat-option value="Заготовки">Заготовки</mat-option>
+          <mat-option value="Консервация">Консервация</mat-option>
+          <mat-option value="Соусы">Соусы</mat-option>
+          <mat-option value="Новые">Новые</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="btn btn_dark" (click)="lackyBtn()" ><i class="mdi mdi-auto-fix"></i>Мне повезет</div>
+  <div class="cat-filter__settings">
+    <i class="mdi mdi-tune"></i>
+  </div>
+</div>
