@@ -1,5 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { ProductItem } from 'src/app/models/product-item';
+import {Component, OnInit, ViewEncapsulation, Output, EventEmitter} from '@angular/core';
+import {ProductItem} from 'src/app/models/product-item';
+import { Recepi } from 'src/app/models/recepi.model';
+import { CatserviceService } from '../../cat/catservice.service';
+
 
 @Component({
   selector: 'app-add-recipe',
@@ -11,40 +14,77 @@ export class AddRecipeComponent implements OnInit {
   @Output()
   onClose: EventEmitter<any> = new EventEmitter<any>();
 
+
+  public recepiName: string;
+  public recepiComment: string;
+  public recepiCategory: string;
+  public recepiTime: string;
+  public recepiId: number;
   public prodictList: ProductItem[] = [];
 
-  public inProduct = 0;
 
-  constructor() { }
+  public convertProduct = [];
 
-  addItemRecepient () {
+  constructor(
+    public catserviceService: CatserviceService
+  ) {
+    
+  }
+
+  addItemRecepient() {
     console.log('добавляем элемент');
     let id = this.prodictList.length + 1;
     this.addEmptyItem(id);
-    // this.prodictList.push([]);
-    // for (let i = 0; i < this.prodictList.length; i++) {
-    //   console.log(this.prodictList);
-    // }
+
   }
 
-  remooveItemRecepient (id: number) {
-     let targetEl =  this.prodictList.findIndex(x => x.id == id);
-     if (targetEl !=-1) {
+  remooveItemRecepient(id: number) {
+    let targetEl = this.prodictList.findIndex(x => x.id == id);
+    if (targetEl != -1) {
       this.prodictList.splice(targetEl, 1);
-     }
+    }
   }
+
   closeModal() {
     if (this.onClose) {
       this.onClose.emit(null);
     }
   }
 
-  private addEmptyItem(id: number): void {
+  addEmptyItem(id: number): void {
     this.prodictList.push({
       id: id,
-      name: "",
-      value: ""
+      name: '',
+      value: ''
     });
+  }
+
+  getNewRectpi() {
+
+    let stringProd = null;
+    let prondAll = '';
+
+    for (let i = 0; i < this.prodictList.length; i++) {
+      if (this.prodictList.length -1 != i) {
+        stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value + '\n';
+      }
+      else {
+        stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value;
+      }
+      
+      prondAll = prondAll + stringProd;
+    }
+    
+
+    let recepiNew = {} as Recepi;
+    recepiNew.Category = this.recepiCategory;
+    recepiNew.Comment = this.recepiComment;
+    recepiNew.Id = this.recepiId;
+    recepiNew.Ingredients = prondAll;
+    recepiNew.Name = this.recepiName;
+    recepiNew.Time = this.recepiTime;
+
+    this.catserviceService.AddReceptiforBase(recepiNew);
   }
 
   ngOnInit() {

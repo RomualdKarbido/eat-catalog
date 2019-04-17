@@ -3,7 +3,7 @@
     <input type="text" placeholder="Название" [(ngModel)]="dataItem.name">
   </div>
   <div class="recipe__line-product-value">
-    <input type="text" placeholder="Колличесво" [(ngModel)]="dataItem.value">
+    <input type="text" placeholder="Колличесво" [(ngModel)]="dataItem.value" (keyup.enter)='addInem()'>
   </div>
   <div class="recipe__line-product-btns">
     <div class="btn" (click)="remooveitem(dataItem.id)"><i class="mdi mdi-minus"></i></div>

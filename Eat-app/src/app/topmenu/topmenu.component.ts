@@ -60,7 +60,7 @@ export class TopmenuComponent implements OnInit {
       let ml = localStorage.getItem('ml');
       this.authUser = true;
       this.emailuser = ml;
-      if (ml == "bis@mail.ru") {
+      if (ml == "robindrnat@gmail.com") {
         this.redactor = true;
       }
       else {

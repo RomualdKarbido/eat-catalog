@@ -14,7 +14,7 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
   padding: $sp 5*$sp $sp $sp ;
   display: flex;
   position: relative;
-  z-index: 1000;
+  z-index: 800;
   transition: all 0.2s;
   &.active {
     position: fixed;
@@ -22,7 +22,6 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     // border-radius: 0 0 10px 10px;
     right: 0;
     left: 0;
-    z-index: 1000;
     box-shadow: 0px 0px 10px #0000006b;
     max-width: 1220px;
     

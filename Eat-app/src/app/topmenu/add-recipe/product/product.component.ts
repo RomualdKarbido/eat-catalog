@@ -10,9 +10,12 @@ import { ProductItem } from 'src/app/models/product-item';
 export class ProductComponent implements OnInit {
 
   @Input() dataItem: ProductItem;
+  @Output() remooveLine: EventEmitter<number> = new EventEmitter<number>();
+  @Output() addLine: EventEmitter<number> = new EventEmitter<number>();
+  
 
-  @Output()
-  remooveLine: EventEmitter<number> = new EventEmitter<number>();
+
+
 
 
 
@@ -22,8 +25,10 @@ export class ProductComponent implements OnInit {
   remooveitem(id) {
     if (this.remooveLine) {
       this.remooveLine.emit(id);
-      console.log('удалить элемент');
     }
+  }
+  addInem() {
+    this.addLine.emit(null);
   }
   ngOnInit() {
 
