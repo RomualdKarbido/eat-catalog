@@ -4,10 +4,8 @@
   box-sizing: border-box;
 }
 
-
 $coll: 3;
 $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
-
 
 .cat {
   display: flex;
@@ -48,10 +46,9 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     flex: 0 0 $coll-w;
     margin-right: $sp;
     margin-bottom: $sp;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.23);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
     background: white;
     position: relative;
-    // transition: all 0.3s;
     &.disabled {
       display: none;
     }
@@ -106,7 +103,6 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
               font-size: 30px;
             }
           }
-          
         }
         &__text {
           margin-bottom: $sp/2;
@@ -135,12 +131,11 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     box-sizing: border-box;
     font-size: 14px;
 
-
     &_one {
       margin-left: 0;
       min-width: 100%;
       max-width: 100%;
-      transition: all 0.3s
+      transition: all 0.3s;
     }
     &_two {
       min-width: 100%;
@@ -148,7 +143,6 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     }
   }
   &__btn {
-    position: absolute;
     height: 70px;
     height: 70 + 65px;
     width: 55px;
@@ -221,9 +215,8 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 4px 0 rgba(0,0,0,0.18);
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
     }
-
   }
   &__title {
     font-size: 22px;
@@ -234,12 +227,11 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     text-decoration: none;
     transition: color 0.2s;
     &:hover {
-      color: #AE9671;
-
+      color: #ae9671;
     }
     &-mini {
       font-weight: bold;
-      margin-bottom: 20px; 
+      margin-bottom: 20px;
       span {
         color: $el;
       }
@@ -270,7 +262,6 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
       padding: 5px 0 5px 5px;
       position: relative;
       margin-bottom: -8px;
-
     }
   }
   &__category {
@@ -283,5 +274,88 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     padding: 3px 10px;
     border-radius: 9px;
     z-index: 100;
+  }
+}
+
+@media (max-width: 1199px) {
+  $coll: 2;
+  $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
+
+  .cat {
+    max-width: inherit;
+    padding-right: $sp;
+    padding-left: $sp;
+    &__item {
+      min-width: $coll-w;
+      min-width: $coll-w;
+      &:nth-child(3n) {
+        margin-right: $sp;
+      }
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  $coll: 1;
+  $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
+
+  .cat {
+    max-width: inherit;
+    padding-right: $sp;
+    padding-left: $sp;
+    &__item {
+      min-width: $coll-w;
+      min-width: $coll-w;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+      &:nth-child(1n) {
+        margin-right: 0;
+      }
+    }
+    &__btn {
+      display: flex;
+      overflow: visible;
+      width: 100%;
+      left: 0;
+      right: 0;
+      top: calc(100% - 30px);
+      justify-content: center;
+      align-items: center;
+      height: 55px;
+      &-size,
+      &-add,
+      &-tabs {
+        opacity: 1;
+        position: relative;
+        margin: 0 5px;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
+      }
+      &:hover {
+        display: flex;
+        overflow: visible;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: calc(100% - 30px);
+        justify-content: center;
+        align-items: center;
+        height: 55px;
+        .cat__btn-size,
+        .cat__btn-add,
+        .cat__btn-tabs {
+          opacity: 1;
+          bottom: 0;
+          position: relative;
+          margin: 0 5px;
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
+        }
+      }
+    }
   }
 }

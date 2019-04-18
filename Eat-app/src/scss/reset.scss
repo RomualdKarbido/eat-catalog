@@ -57,5 +57,13 @@ body {
   background-position: center top;
   background-attachment:fixed;
 }
+.mob {
+  display: none;
+}
 
+@media (max-width: 767px) {
+  .mob {
+    display: flex;
+  }
+}
 

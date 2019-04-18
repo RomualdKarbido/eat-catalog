@@ -5,7 +5,7 @@
     background: white;
     padding: 30px;
     position: relative;
-    animation: visiblemodal  .7s;
+    animation: visiblemodal 0.7s;
     max-width: 505px;
     box-sizing: border-box;
     &-wrap {
@@ -41,7 +41,6 @@
       &:hover {
         color: $green;
       }
-
     }
     &-week {
       display: flex;
@@ -55,6 +54,7 @@
       border-radius: 100%;
       min-height: 55px;
       min-width: 55px;
+      max-width: 55px;
       border: 1px solid $green;
       margin: 0 $sp/4;
       transition: all 0.2s;
@@ -82,5 +82,36 @@
   to {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+@media (max-width: 767px) {
+  .cart {
+    &__modal {
+      max-width: 85%;
+      min-width: 85%;
+      &-close {
+        right: 10px;
+        top: 10px;
+        color: black;
+      }
+      &-week {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      &-day {
+        // min-height: 32px;
+        // min-width: 32px;
+        // max-width: 32px;
+        // font-size: 12px;
+        margin: 0 2px 4px;
+        &:last-child {
+          margin-right: 2px;
+        }
+        &:first-child {
+          margin-left: 2px;
+        }
+      }
+    }
   }
 }

@@ -4,12 +4,13 @@ input, textarea {
   background: white;
   border: 1px solid #DDDDDD;
   padding: 20px 20px;
-  font-size: 16px;
+  font-size: 16px !important;
   width: 100%;
   box-sizing: border-box;
   outline: none;
   &::placeholder {
     color: #a5a7a9;;
+    font-size: 16px !important;
   }
 }
 
@@ -109,3 +110,20 @@ input, textarea {
     color: rgba(0,0,0,.87);
   }
 }
+// @media (max-width: 767px) {
+//   input, textarea {
+//     border-radius: 10px;
+//     background: #F6F6F6;
+//     background: white;
+//     border: 1px solid #DDDDDD;
+//     padding: 15px 10px;
+//     font-size: 16px !important;
+//     width: 100%;
+//     box-sizing: border-box;
+//     outline: none;
+//     &::placeholder {
+//       color: #a5a7a9;;
+//       font-size: 16px !important;
+//     }
+//   }
+// }

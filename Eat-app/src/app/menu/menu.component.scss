@@ -9,9 +9,11 @@
   max-width: 1200px;
   margin: 0 auto;
   margin-bottom: 100px;
+
   &_list {
     margin-bottom: $sp*3;
   }
+
   &__cart {
     display: flex;
     background: white;
@@ -37,24 +39,30 @@
       top: 10px;
       right: 10px;
       transition: all 0.2s;
+
       i {
         color: white;
       }
+
       &_week {
         font-size: 12px;
         right: 90px;
         background: #AE9671;
       }
+
       &_plus {
         right: 50px;
       }
+
       &_minus {
         right: 10px;
       }
+
       &:hover {
         background: black;
       }
     }
+
     &-left {
       min-width: 410px;
       max-width: 410px;
@@ -65,14 +73,17 @@
       margin-right: $sp *3;
 
     }
+
     &-right {
       padding: 40px 40px 40px 0;
     }
+
     &-title {
       font-size: 30px;
       font-weight: bold;
       margin-bottom: $sp - 5;
     }
+
     &-category {
       background: $green;
       top: 15px;
@@ -82,48 +93,59 @@
       padding: 3px 10px;
       border-radius: 9px;
       z-index: 100;
+
       &_time {
         background: $el;
         margin-left: $sp / 3;
       }
+
       &-wrap {
         display: flex;
         margin-bottom: $sp;
       }
     }
+
     &-textwrap {
       display: flex;
       font-size: 14px;
     }
+
     &-textleft {
       &-title {
         font-weight: bold;
         margin-bottom: $sp/2;
       }
+
       &-text {
         margin-bottom: 10px;
       }
+
       // *ngIf = "day.dayvalue == activeweekday && day.idcart.length == 0"
     }
+
     &-textright {
       min-width: 320px;
       max-width: 320px;
       padding-left: $sp*3;
+
       &-title, &-value {
         background: white;
         padding: 5px;
         position: relative;
         margin-bottom: -8px;
       }
+
       &-title {
         padding-left: 0;
         font-size: 13px;
       }
+
       &-value {
         padding-right: 0;
         font-size: 13px;
       }
     }
+
     &-string {
       display: flex;
       border-bottom: 1px dotted gray;
@@ -131,6 +153,7 @@
       margin-bottom: 5px;
     }
   }
+
   &__message {
     display: flex;
     max-width: 1200px;
@@ -139,7 +162,8 @@
     justify-content: center;
     align-items: center;
     min-height: 200px;
-    animation: vizible  .7s;
+    animation: vizible .7s;
+
     div {
       color: white;
 
@@ -149,6 +173,7 @@
         margin-bottom: $sp;
       }
     }
+
     &_btn {
       margin-top: $sp*5;
       padding: 30px 50px !important;
@@ -157,9 +182,11 @@
       cursor: pointer;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
       border-radius: 100px;
+
       &:hover {
         background: black;
       }
+
       &-wrap {
         display: flex;
         align-items: center;
@@ -167,13 +194,16 @@
       }
     }
   }
+
   &__forweek {
     margin-bottom: 5* $sp;
+
     &-title {
       color: white;
       text-align: center;
       margin-bottom: $sp *2 - 5;
     }
+
     &-btn {
       display: flex;
       align-items: center;
@@ -189,24 +219,28 @@
         background: none;
         border: 1px solid white;
 
-         i {
-           padding: 0;
-           margin: 0;
-           margin-left: $sp/2;
-         }
+        i {
+          padding: 0;
+          margin: 0;
+          margin-left: $sp/2;
+        }
+
         &:hover {
           border: 1px solid $green;
 
         }
+
         &.active {
           border: 1px solid $green;
           color: white;
+
           &:hover {
             color: white;
           }
         }
       }
     }
+
     //предпечать
     &-print {
       .menu {
@@ -214,16 +248,20 @@
           &-left {
             display: none;
           }
+
           &-right {
             padding: $sp*2;
             flex: 1;
           }
+
           &-textleft {
             flex: 1;
           }
+
           &-textwrap {
-            flex:1;
+            flex: 1;
           }
+
           &-textright {
             min-width: 40%;
             min-width: 40%;
@@ -233,6 +271,7 @@
     }
   }
 }
+
 .weekfilter {
   &__header {
     display: flex;
@@ -241,26 +280,27 @@
     color: white;
     margin-bottom: $sp*2;
     justify-content: space-between;
+
     &-item {
       flex: 1;
       text-align: center;
       padding: $sp;
       font-weight: bold;
       cursor: pointer;
-      border-bottom: 2px  solid rgba($green, 0);
+      border-bottom: 2px solid rgba($green, 0);
       transition: all 0.7s;
+
       &.active {
         border-bottom: 2px solid rgba($green, 1);
       }
     }
   }
+
   &__content {
     margin: 0 auto;
     max-width: 1200px;
   }
 }
-
-
 
 
 @keyframes vizible {
@@ -271,6 +311,7 @@
     opacity: 1;
   }
 }
+
 @keyframes viziblecart {
   from {
     opacity: 0;
@@ -279,6 +320,55 @@
   to {
     opacity: 1;
     // transform: translateY(0px);
+  }
+}
+
+@media (max-width: 767px) {
+
+  .weekfilter {
+    display: none;
+  }
+  .menu {
+    max-width: inherit;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &__cart {
+      flex-direction: column;
+      align-items: flex-start;
+      &-left {
+        height: 200px;
+        border-radius: 10px 10px 0 0;
+        min-width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+      }
+
+      &-textwrap {
+        flex-direction: column;
+      }
+
+      &-right {
+        padding: $sp;
+      }
+      &-textright {
+        padding: 0;
+        margin-top: $sp;
+        max-width: 100%;
+        min-width: 100%;
+      }
+      &-category {
+        margin-bottom: $sp/3;
+        &-wrap {
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+        &_time {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
 
