@@ -11,7 +11,7 @@
   margin-bottom: 100px;
 
   &_list {
-    margin-bottom: $sp*3;
+    margin-bottom: $sp * 3;
   }
 
   &__cart {
@@ -47,7 +47,7 @@
       &_week {
         font-size: 12px;
         right: 90px;
-        background: #AE9671;
+        background: #ae9671;
       }
 
       &_plus {
@@ -70,8 +70,7 @@
       background-size: cover !important;
       background-position: center center;
       border-radius: 10px 0 0 10px;
-      margin-right: $sp *3;
-
+      margin-right: $sp * 3;
     }
 
     &-right {
@@ -126,9 +125,10 @@
     &-textright {
       min-width: 320px;
       max-width: 320px;
-      padding-left: $sp*3;
+      padding-left: $sp * 3;
 
-      &-title, &-value {
+      &-title,
+      &-value {
         background: white;
         padding: 5px;
         position: relative;
@@ -162,7 +162,7 @@
     justify-content: center;
     align-items: center;
     min-height: 200px;
-    animation: vizible .7s;
+    animation: vizible 0.7s;
 
     div {
       color: white;
@@ -175,7 +175,7 @@
     }
 
     &_btn {
-      margin-top: $sp*5;
+      margin-top: $sp * 5;
       padding: 30px 50px !important;
       font-size: 18px;
       transition: all 0.2s;
@@ -196,12 +196,12 @@
   }
 
   &__forweek {
-    margin-bottom: 5* $sp;
+    margin-bottom: 5 * $sp;
 
     &-title {
       color: white;
       text-align: center;
-      margin-bottom: $sp *2 - 5;
+      margin-bottom: $sp * 2 - 5;
     }
 
     &-btn {
@@ -227,7 +227,6 @@
 
         &:hover {
           border: 1px solid $green;
-
         }
 
         &.active {
@@ -250,7 +249,7 @@
           }
 
           &-right {
-            padding: $sp*2;
+            padding: $sp * 2;
             flex: 1;
           }
 
@@ -278,7 +277,7 @@
     margin: 0 auto;
     max-width: 800px;
     color: white;
-    margin-bottom: $sp*2;
+    margin-bottom: $sp * 2;
     justify-content: space-between;
 
     &-item {
@@ -302,7 +301,6 @@
   }
 }
 
-
 @keyframes vizible {
   from {
     opacity: 0;
@@ -324,15 +322,30 @@
 }
 
 @media (max-width: 767px) {
-
   .weekfilter {
-    display: none;
+    overflow: hidden;
+    height: 62px;
+    margin-bottom: $sp;
+    &__header {
+      margin-left: 16px;
+      margin-right: 16px;
+      overflow: auto;
+      height: 80px;
+      &-item {
+        height: 60px;
+      }
+    }
   }
   .menu {
     max-width: inherit;
-    padding-left: 16px;
-    padding-right: 16px;
 
+    &__forweek {
+      padding-left: 16px;
+      padding-right: 16px;
+      &-btn {
+        display: none;
+      }
+    }
     &__cart {
       flex-direction: column;
       align-items: flex-start;
@@ -349,7 +362,7 @@
       }
 
       &-right {
-        padding: $sp;
+        padding: $sp+10;
       }
       &-textright {
         padding: 0;
@@ -369,6 +382,18 @@
         }
       }
     }
+    &__message {
+      margin-top: 20%;
+      div {
+        h2 {
+          font-size: 28px;
+        }
+
+      }
+      &_btn {
+        margin-top: 20%;
+        font-size: 16px;
+      }
+    }
   }
 }
-

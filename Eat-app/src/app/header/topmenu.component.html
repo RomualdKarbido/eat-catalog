@@ -4,7 +4,7 @@
       <i class="mdi mdi-close" *ngIf="menuOpen"></i>
     </div>
     <div class="header__mobil-user" *ngIf="emailuser">{{emailuser}}</div>
-  <div class="header__menu" [ngClass]="{'active': menuactive, 'active': menuOpen}">
+  <div class="header__menu" [ngClass]="{'stick': menuactive, 'active': menuOpen}">
     <div class="header__left">
       <a routerLink="/" routerLinkActive="active" (click)="closeTopMenu()" [routerLinkActiveOptions]="{exact: true}" class="header__menu-item">Каталог блюд</a>
       <a routerLink="/menu/days" routerLinkActive="active" (click)="closeTopMenu()" [routerLinkActiveOptions]="{exact: true}" class="header__menu-item">Мое меню</a>

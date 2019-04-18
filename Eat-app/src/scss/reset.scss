@@ -60,10 +60,16 @@ body {
 .mob {
   display: none;
 }
+// .desktop {
+//   display: inherit;
+// }
 
 @media (max-width: 767px) {
   .mob {
     display: flex;
   }
+  // .desktop {
+  //   display: none;
+  // }
 }
 

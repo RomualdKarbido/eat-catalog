@@ -94,7 +94,7 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     padding: 0;
     background: none;
     max-width: inherit;
-    margin: 0 $sp 10px;
+    margin: 0 16px 10px;
     flex-direction: column;
     &__settings {
       display: none;

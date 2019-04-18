@@ -110,7 +110,7 @@ export class TopmenuComponent implements OnInit {
         this.userinfo.setNewUser(res.user.uid, res.user.email);
         this.modal = false;
       }, err => {
-        this.errorMessage = err.message;
+        this.errorMessage = err.message; 
         this.successMessage = '';
       });
   }

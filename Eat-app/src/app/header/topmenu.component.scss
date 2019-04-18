@@ -75,7 +75,7 @@
       outline: none !important;
     }
 
-    &.active {
+    &.stick {
       background: rgba(0, 0, 0, 0.6);
       padding: $sp $sp;
       height: 80px;
@@ -176,6 +176,10 @@
   }
 }
 @media (max-width: 767px) {
+  .auth {
+    width: auto;
+    padding: 2*$sp $sp + 10;
+  }
   .header {
     height: 140px;
     margin-bottom: 30px;
@@ -230,6 +234,7 @@
         box-shadow: 0 0 16px 0px #00000091;
         z-index: 800;
         max-width: 250px;
+        padding:  $sp;
         .header {
           &__left,
           &__right {

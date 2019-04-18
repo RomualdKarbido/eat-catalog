@@ -303,8 +303,8 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
 
   .cat {
     max-width: inherit;
-    padding-right: $sp;
-    padding-left: $sp;
+    padding-right: 16px;
+    padding-left: 16px;
     &__item {
       min-width: $coll-w;
       min-width: $coll-w;
@@ -316,6 +316,16 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
       }
       &:nth-child(1n) {
         margin-right: 0;
+      }
+    }
+    &__tab {
+      padding: 2*$sp $sp+10 $sp+10 $sp+10;
+      &_one {
+      }
+    }
+    &__list {
+      &-title, &-value {
+        font-size: 13px;
       }
     }
     &__btn {
