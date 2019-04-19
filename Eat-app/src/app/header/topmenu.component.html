@@ -1,10 +1,10 @@
 <header class="header">
     <div class="header__menu-munubtn" (click)="openCloseTopMenu()" [ngClass]="{'active': menuOpen}">
       <i class="mdi mdi-menu" *ngIf="!menuOpen"></i>
-      <i class="mdi mdi-close" *ngIf="menuOpen"></i>
+      <i class="mdi mdi-close" *ngIf="menuOpen" ></i>
     </div>
-    <div class="header__filter">
-      <i class="mdi mdi-filter"></i>
+    <div class="header__filter" *ngIf="filterOn && menuactive" (click)="filterVisible()"  [ngClass]="{active: finterActive}">
+      <i class="mdi mdi-filter-variant"></i>
     </div>
     <div class="header__mobil-user" *ngIf="emailuser">{{emailuser}}</div>
   <div class="header__menu" [ngClass]="{'stick': menuactive, 'active': menuOpen}">

@@ -23,6 +23,10 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     box-shadow: 0px 0px 10px #0000006b;
     max-width: 1220px;
   }
+  &__invert {
+    height: 100px;
+    margin-bottom: $sp;
+  }
   &__item {
     min-width: $coll-w;
     min-width: $coll-w;
@@ -96,6 +100,16 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     max-width: inherit;
     margin: 0 16px 10px;
     flex-direction: column;
+    transition: none;
+    &.active {
+      padding: $sp $sp 10px $sp;
+      background: white;
+      left: 74px;
+    }
+    &__invert {
+      height: 140px;
+      margin-bottom: 10px;
+    }
     &__settings {
       display: none;
     }

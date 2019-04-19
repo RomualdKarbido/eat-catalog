@@ -97,9 +97,6 @@
       color: white;
       display: block;
       box-sizing: border-box;
-      &_filter {
-        display: none;
-      }
       i {
         font-size: 24px;
         position: relative;
@@ -191,11 +188,9 @@
     margin-bottom: 30px;
     align-items: flex-end;
     &__filter {
-      display: block;
       position: fixed;
       top: 85px;
       left: $sp;
-
       color: #87BF49;
       font-size: 24px;
       width: 55px;
@@ -207,6 +202,9 @@
       justify-content: center;
       border-radius: 50%;
       box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
+      &.active {
+        box-shadow: 0 0 16px 0px #00000091;
+      }
     }
     &__center {
       display: none;
@@ -251,6 +249,9 @@
       }
       &-item {
         color: black;
+        &_filter {
+          display: none;
+        }
       }
       &.active {
         display: flex;
