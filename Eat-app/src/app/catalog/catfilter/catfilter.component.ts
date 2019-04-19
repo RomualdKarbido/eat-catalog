@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { GetJsonService } from '../../get-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./catfilter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CatfilterComponent implements OnInit {
+export class CatfilterComponent implements OnInit, OnDestroy {
 
 
   @Output() searchEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -25,7 +26,8 @@ export class CatfilterComponent implements OnInit {
   public selected: any;
   public filterblock: boolean;
  
-
+ 
+  private _filterSubscrpt: Subscription;
 
   constructor(
     public select: MatSelectModule,
@@ -33,8 +35,19 @@ export class CatfilterComponent implements OnInit {
     private router: Router
   ) {
     this.getJsonService.LackybtnPush.subscribe(x => this.lackyBtn());
+
+    this._filterSubscrpt = this.getJsonService.filterOn.subscribe(y => {
+      console.log(y)
+        this.filterblock = y;
+    });
   }
 
+  scrollEvent = (event: any): void => {
+    if (event.srcElement.scrollingElement.scrollTop <= 170 && this.filterblock) {
+      this.getJsonService.filterDeactivate();
+      this.filterblock = false;
+    }
+  };
 
   resetSearchforMenu() {
     this.resetSearch.emit(null);
@@ -61,17 +74,21 @@ export class CatfilterComponent implements OnInit {
   hasAnyFilterValue() {
     this.searchEvent.emit(null);
   }
+  
+ 
 
-  // scrollEvent = (event: any): void => {
-  //   if (event.srcElement.scrollingElement.scrollTop > 169) {
-  //     this.filterblock = true;
-  //   } else {
-  //     this.filterblock = false;
-  //   }
-  // }
+
+ 
+  
 
 
   ngOnInit() {
-    // window.addEventListener('scroll', this.scrollEvent, true);
+    window.addEventListener('scroll', this.scrollEvent, true);
+  }
+  
+ 
+  ngOnDestroy() {
+    if(this._filterSubscrpt)
+      this._filterSubscrpt.unsubscribe();
   }
 }

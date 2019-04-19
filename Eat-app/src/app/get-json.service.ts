@@ -23,11 +23,15 @@ export class GetJsonService {
   public idList = [];
   public ItemALLArr = null;
   public resuslt = null;
-  public LackybtnPush:EventEmitter<any> = new EventEmitter();
+  public LackybtnPush: EventEmitter<any> = new EventEmitter();
+  public filterOn: EventEmitter<any> = new EventEmitter();
+  public filterOff: EventEmitter<any> = new EventEmitter();
+  public statefilter = false;
 
   resetCounterService() {
     this.count = 0;
   }
+
 
 
   // id для стр карты меню
@@ -42,5 +46,16 @@ export class GetJsonService {
   }
   lackyBtn() {
     this.LackybtnPush.emit(null);
+  }
+
+
+
+  filterVisibleActivate() {
+    this.statefilter = !this.statefilter;
+    this.filterOn.emit(this.statefilter);
+  }
+  filterDeactivate() {
+    this.statefilter = false;
+    this.filterOff.emit(this.statefilter);
   }
 }

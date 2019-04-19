@@ -8,6 +8,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  &__filter {
+    display: none;
+  }
   &__mobil-user {
     display: none;
   }
@@ -94,6 +97,9 @@
       color: white;
       display: block;
       box-sizing: border-box;
+      &_filter {
+        display: none;
+      }
       i {
         font-size: 24px;
         position: relative;
@@ -184,6 +190,24 @@
     height: 140px;
     margin-bottom: 30px;
     align-items: flex-end;
+    &__filter {
+      display: block;
+      position: fixed;
+      top: 85px;
+      left: $sp;
+
+      color: #87BF49;
+      font-size: 24px;
+      width: 55px;
+      height: 55px;
+      z-index: 800;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.18);
+    }
     &__center {
       display: none;
     }

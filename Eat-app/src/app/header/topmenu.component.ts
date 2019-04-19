@@ -39,6 +39,8 @@ export class TopmenuComponent implements OnInit {
   public addrecepi = false;
   public exact = false;
   public menuOpen = false;
+  public filterOn = true;
+  public finterActive: boolean;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -66,7 +68,25 @@ export class TopmenuComponent implements OnInit {
       this.authUser, this.redactor = false;
       this.emailuser = null;
     }
+
+
+
+
+    this.getJsonService.filterOn.subscribe(y => {
+      this.finterActive = y;      
+    });
+    this.getJsonService.filterOff.subscribe(d => {
+      this.finterActive = d;
+    });
   }
+
+  filterVisible() {
+    this.getJsonService.filterVisibleActivate();
+  }
+
+
+
+
 
   setlackyBtn() {
     this.getJsonService.lackyBtn();
@@ -83,6 +103,8 @@ export class TopmenuComponent implements OnInit {
       this.menuactive = false;
     }
   };
+
+  
 
   reseCounterCat() {
     this.getJsonService.resetCounterService();
