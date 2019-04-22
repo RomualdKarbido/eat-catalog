@@ -3,7 +3,7 @@
       <i class="mdi mdi-menu" *ngIf="!menuOpen"></i>
       <i class="mdi mdi-close" *ngIf="menuOpen" ></i>
     </div>
-    <div class="header__filter" *ngIf="filterOn && menuactive" (click)="filterVisible()"  [ngClass]="{active: finterActive}">
+    <div class="header__filter" *ngIf="filterOn && menuactive && home" (click)="filterVisible()"  [ngClass]="{active: finterActive}">
       <i class="mdi mdi-filter-variant"></i>
     </div>
     <div class="header__mobil-user" *ngIf="emailuser">{{emailuser}}</div>
@@ -11,14 +11,14 @@
     <div class="header__left">
       <a routerLink="/" routerLinkActive="active" (click)="closeTopMenu()" [routerLinkActiveOptions]="{exact: true}" class="header__menu-item">Каталог блюд</a>
       <a routerLink="/menu/days" routerLinkActive="active" (click)="closeTopMenu()" [routerLinkActiveOptions]="{exact: true}" class="header__menu-item">Мое меню</a>
-      <div class="header__menu-item header__menu-item_filter" *ngIf="filterOn && menuactive" (click)="filterVisible()"  [ngClass]="{active: finterActive}" >Фильтр</div>
+      <div class="header__menu-item header__menu-item_filter" *ngIf="filterOn && menuactive && home" (click)="filterVisible()"  [ngClass]="{active: finterActive}" >Фильтр</div>
     </div>
     <div class="header__center">
         <a [routerLink]="['/']"  class="header__center-logo"></a>
       </div>
 
     <div class="header__right">
-        <div class="mob" (click)="setlackyBtn(); closeTopMenu()">Мне повезет</div>
+        <div class="mob" (click)="setlackyBtn(); closeTopMenu()" *ngIf="home">Мне повезет</div>
       <div class="" (click)="openModalRecepient(); closeTopMenu()" *ngIf="redactor && authUser">Добавить рецепт</div>
       <div (click)="modalAuth(); closeTopMenu()" *ngIf="!authUser">Вход</div>
       <div class="header__right-user" *ngIf="authUser ">{{emailuser}}</div>

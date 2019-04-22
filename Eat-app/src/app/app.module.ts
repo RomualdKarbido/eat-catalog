@@ -35,7 +35,8 @@ const appRoutes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'menu/:day', component: MenuComponent },
   { path: 'add_recipe', component: AddRecipeComponent },
-  { path: '', component: CatComponent, pathMatch: 'full' }
+  { path: '', pathMatch: 'full', component: CatComponent },
+
 ];
 
 

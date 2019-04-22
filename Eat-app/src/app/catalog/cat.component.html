@@ -8,8 +8,7 @@
 
 
 <div class="cat" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="50" [infiniteScrollDisabled]="stopinterscroll" (scrolled)="onScroll()" *ngIf="viewCartList.length > 0">
-  <div class="cat__item" id="{{item.Id}}" [class.active]="item.Id == activeItem" [class.big]="item.Id == bigcart"
-    *ngFor="let item of viewCartList">
+  <div class="cat__item" id="{{item.Id}}" [class.active]="item.Id == activeItem" [class.big]="item.Id == bigcart" *ngFor="let item of viewCartList; trackBy: trackByFn">
     <div class="cat__category">{{item.Category}} {{item.Id}}</div>
     <div class="cat__img" [ngStyle]="{'background-image': item.Img}">
       <div class="cat__img-bg" (click)="resizecart(item.Id)"></div>

@@ -317,6 +317,18 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
       &:nth-child(1n) {
         margin-right: 0;
       }
+      &.big{
+        flex-direction: column;
+        .cat {
+          &__img {
+            padding-bottom: 55%;
+            min-width: 100%;
+          }
+         &__btn {
+          top: calc(100% - 30px);
+         }
+        }
+      }
     }
     &__tab {
       padding: 2*$sp $sp+10 $sp+10 $sp+10;

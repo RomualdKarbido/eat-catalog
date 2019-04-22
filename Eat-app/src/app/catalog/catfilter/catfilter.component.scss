@@ -107,8 +107,8 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
       left: 74px;
     }
     &__invert {
-      height: 140px;
-      margin-bottom: 10px;
+      height: 138px; 
+     
     }
     &__settings {
       display: none;

@@ -95,3 +95,46 @@
     transform: translateY(0px);
   }
 }
+
+@media (max-width: 767px) {
+  .recipe {
+    margin-left: 16px;
+    margin-right: 16px;
+    &__title {
+      padding: 30px;
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+    &__scroll {
+      padding: 30px;
+      padding-top: 0;
+      max-height: calc(100vh - 255px);
+    }
+    &__line {
+      flex-wrap: wrap;
+      &-add {
+        left: calc(50% - 30px);
+        top: -20px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+
+      &-mini {
+        max-width: 100%;
+        min-width: 100%;
+        flex-wrap: wrap;
+
+        &-left {
+          flex: 1;
+          max-width: 100%;
+          min-width: 100%;
+          flex-wrap: wrap;
+          margin: 0;
+          margin-bottom: $sp/2;
+
+        }
+      }
+    }
+  }
+}

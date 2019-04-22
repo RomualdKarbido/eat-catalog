@@ -8,35 +8,74 @@
     padding-top: $sp;
     position: relative;
   }
+
   &__line {
     .btn {
       height: 60px;
       cursor: pointer;
     }
+
     &_btn {
       margin-top: 2 * $sp;
     }
+
     &-product {
       display: flex;
       margin-bottom: $sp/2;
+
       &-btns {
         display: flex;
+
         .btn {
           margin-left: $sp/2;
+
           i {
             margin: 0;
             padding: 0;
           }
         }
       }
+
       &-name {
         width: 55%;
         margin-right: $sp/2;
       }
+
       &-value {
         flex: 1;
       }
     }
   }
+}
+
+@media (max-width: 767px) {
+  .recipe {
+    &__products {
+      margin-top: $sp+10;
+    }
+    &__line {
+      &-product {
+        flex-wrap: wrap;
+        margin-bottom: $sp;
+        &-name {
+          min-width: 100%;
+          max-width: 100%;
+          margin-right: 0;
+          margin-bottom: $sp/2;
+
+        }
+      }
+      &_btn {
+        padding: 30px;
+        margin-top: 0;
+        .btn {
+          margin: 0;
+          min-width: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
 }
 

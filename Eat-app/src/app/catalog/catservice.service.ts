@@ -8,13 +8,14 @@ import {Observer} from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
-export class CatserviceService { 
+export class CatserviceService {
 
   constructor(
     private http: HttpClient,
     private db: AngularFireDatabase
   ) {
   }
+
   private AlllistLength = null;
 
   getCartList() {
@@ -25,20 +26,10 @@ export class CatserviceService {
       });
     });
   }
+
   AddReceptiforBase(recepi) {
-    
-    var postData = recepi;
-    
-    
-     
 
-      this.db.database.ref().child('/catalog2').push(postData).key;
-      // var updates = {};
-      // updates['/catalog2/' + Newkey] = postData;
-      // return this.db.database.ref().update(updates); 
-
-
-      
-   
+    const postData = recepi;
+    this.db.database.ref().child('/catalog2').push(postData).key;
   }
 }

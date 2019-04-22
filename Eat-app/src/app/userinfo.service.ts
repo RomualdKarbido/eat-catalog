@@ -21,7 +21,7 @@ export class UserinfoService {
 
   public $logintNotifier: Observable<any>;
   private logoinSubject = new Subject<any>();
-  private eatMassAll = [];
+
 
   constructor(
     public afAuth: AngularFireAuth,

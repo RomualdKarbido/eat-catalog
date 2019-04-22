@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import {AngularFireDatabase} from 'angularfire2/database';
-import {UserinfoService} from '../userinfo.service';
-import {GetJsonService} from '../get-json.service';
-import {Router} from '@angular/router';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserinfoService } from '../userinfo.service';
+import { GetJsonService } from '../get-json.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -41,13 +41,16 @@ export class TopmenuComponent implements OnInit {
   public menuOpen = false;
   public filterOn = true;
   public finterActive: boolean;
+  public home =  false;
+ 
 
   constructor(
     public afAuth: AngularFireAuth,
     public db: AngularFireDatabase,
     public userinfo: UserinfoService,
     private getJsonService: GetJsonService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     this.authUser = userinfo.loadCurrentUserLight();
@@ -69,15 +72,28 @@ export class TopmenuComponent implements OnInit {
       this.emailuser = null;
     }
 
-
-
-
     this.getJsonService.filterOn.subscribe(y => {
-      this.finterActive = y;      
+      this.finterActive = y;
     });
     this.getJsonService.filterOff.subscribe(d => {
       this.finterActive = d;
     });
+
+    
+    let xx1:any;
+    let yy1:any;
+    router.events.subscribe(x=>{
+      let url:any = x;
+      xx1=yy1;
+      yy1 = url.url;
+      
+      if(xx1 == '/') {
+        this.home = true;
+      } else {
+        this.home = false;
+      }
+    });
+ 
   }
 
   filterVisible() {
@@ -104,7 +120,7 @@ export class TopmenuComponent implements OnInit {
     }
   };
 
-  
+
 
   reseCounterCat() {
     this.getJsonService.resetCounterService();
@@ -132,7 +148,7 @@ export class TopmenuComponent implements OnInit {
         this.userinfo.setNewUser(res.user.uid, res.user.email);
         this.modal = false;
       }, err => {
-        this.errorMessage = err.message; 
+        this.errorMessage = err.message;
         this.successMessage = '';
       });
   }
@@ -209,21 +225,9 @@ export class TopmenuComponent implements OnInit {
     this.menuOpen = false;
   }
 
+ 
   ngOnInit() {
     window.addEventListener('scroll', this.scrollEvent, true);
-
-    // this.router.events.subscribe((val) => {
-    //   console.log(val.url);
-    //   let xx = val.url;
-    //   let ww = xx.filter(dd => {
-    //     'menu' = dd
-    //   });
-    //   if (ww) {
-    //     console.log(ww);
-    //     this.exact = true;
-    //   }
-
-    // })
-
   }
+
 }
