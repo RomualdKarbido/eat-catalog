@@ -97,7 +97,7 @@ export class UserinfoService {
         this.db.database.ref('/Users/' + this.userId + '/mymenu/' + dayNum).once('value').then(day => {
           let daylist = day.val();
           let searcId = daylist.indexOf(id);
-          if (daylist[0] == -1) {
+          if (daylist[0] === -1) {
             dataToSave[dayNum] = [id];
             this.db.database.ref('Users/' + this.userId + '/mymenu/').update(dataToSave);
             return;

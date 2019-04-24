@@ -54,9 +54,7 @@ export class CatComponent implements OnInit {
 
   constructor(
     public userinfo: UserinfoService,
-    public catservice: CatserviceService,
-    private activatedRoute: ActivatedRoute,
-    private db: AngularFireDatabase
+    public catservice: CatserviceService
   ) {
   }
 
@@ -128,7 +126,7 @@ export class CatComponent implements OnInit {
         }
       }
       if (this.catFilterComponent.selectedCategory && this.result.length > 0) {
-        // console.log("Поиск - 1, категория 1")
+
         this.viewCartList = [];
         this.result = this.result.filter(x => x.Category == this.catFilterComponent.selectedCategory);
         for (let i = 0; i < this.result.length; i++) {
@@ -136,7 +134,7 @@ export class CatComponent implements OnInit {
         }
       }
       if (this.catFilterComponent.selectedCategory && this.result.length == 0) {
-        // console.log("Поиск - 0, категория 1")
+
         this.viewCartList = [];
         this.result = this.alMasNew.filter(x => x.Category == this.catFilterComponent.selectedCategory);
         for (let i = 0; i < this.result.length; i++) {
@@ -149,7 +147,7 @@ export class CatComponent implements OnInit {
     } else {
       this.resetSearchAll();
       document.body.scrollTop = document.documentElement.scrollTop = 0;
-      // console.log("Поиск - 0, категория 0")
+
     }
     this.result = [];
     this.resultIng = [];
@@ -184,17 +182,23 @@ export class CatComponent implements OnInit {
 
   resizecart(id) {
 
-    if (this.bigcart == id && window.innerWidth > 767) {
+    if (this.bigcart == id) {
       this.bigcart = null;
       this.bigcartMarkerOn = false;
       this.bigcartMarkerOff = true;
-      this.enebleItem();
-    } else if (window.innerWidth > 767) {
+      if (window.innerWidth > 747) {
+        this.enebleItem();
+      }
+
+    } else {
       this.bigcart = id;
       this.bigcartMarkerOn = true;
       this.bigcartMarkerOff = false;
-      this.disabledItev(id);
+      if (window.innerWidth > 747) {
+        this.disabledItev(id);
+      }
     }
+
   }
 
   disabledItev(id) {
@@ -204,7 +208,6 @@ export class CatComponent implements OnInit {
 
     for (let i = 0; i < ArrallDom.length; i++) {
       if (ArrallDom[i].id == id) {
-
         //для планшетов
         if (countEl == 1 && window.innerWidth <= 1199) {
           ArrallDom[i + 1].classList.add('disabled');

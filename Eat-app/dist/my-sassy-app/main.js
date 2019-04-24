@@ -1479,7 +1479,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-catfilter (searchEvent)=\"FilteredData()\" (resetSearch)=\"resetSearch()\"  [listCartId]=\"CatListId\"></app-catfilter>\n\n<div class=\"preloader\" *ngIf=\"preloader\">\n  <div class=\"preloader__status\"></div>\n</div>\n\n\n\n\n<div class=\"cat\" infiniteScroll [infiniteScrollDistance]=\"0\" [infiniteScrollThrottle]=\"50\" [infiniteScrollDisabled]=\"stopinterscroll\" (scrolled)=\"onScroll()\" *ngIf=\"viewCartList.length > 0\">\n  <div class=\"cat__item\" id=\"{{item.Id}}\" [class.active]=\"item.Id == activeItem\" [class.big]=\"item.Id == bigcart\"\n    *ngFor=\"let item of viewCartList\">\n    <div class=\"cat__category\">{{item.Category}} {{item.Id}}</div>\n    <div class=\"cat__img\" [ngStyle]=\"{'background-image': item.Img}\">\n      <div class=\"cat__img-bg\" (click)=\"resizecart(item.Id)\"></div>\n      <div class=\"cat__btn\">\n        <div [routerLink]=\"['/cart', item.Id]\" class=\"cat__btn-size\"><i class=\"mdi mdi-link\"></i></div>\n        <div class=\"cat__btn-add\" (click)=\"openmodal(item.Name, item.Id)\"><i class=\"mdi mdi-plus\"></i></div>\n        <div class=\"cat__btn-tabs\" (click)=\"switchtabs(item.Id)\">\n          <i class=\"mdi mdi-silverware\"></i>\n          <i class=\"mdi mdi-playlist-check\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"cat__tabs\">\n      <div class=\"cat__tab cat__tab_one\">\n        <div class=\"cat__title\" (click)=\"resizecart(item.Id)\">{{item.Name}}</div>\n        <div class=\"cat__title-mini\">Ингредиенты</div>\n        <div class=\"cat__list\">\n          <div class=\"cat__list-item\" *ngFor=\"let product of item.Ingredients\">\n\n            <div class=\"cat__list-title\">{{product[0]}} </div>\n            <div class=\"cat__list-value\">{{product[1]}} </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"cat__tab cat__tab_two\">\n        <div class=\"cat__title\" (click)=\"resizecart(item.Id)\">{{item.Name}}</div>\n        <div class=\"cat__title-mini\">Приготовление: <span>{{item.Time}} мин</span></div>\n        <div class=\"cat__text cat__text_big\">\n          {{item.Comment}}\n        </div>\n        <div class=\"cat__text\" *ngIf=\"item.Comment.length < 300\">\n          {{item.Comment}}\n        </div>\n        <div class=\"cat__text\" *ngIf=\"item.Comment.length >= 300\">\n          {{item.Comment.substring(0, 300) + ' ...'}}\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"cart__modal-wrap\" *ngIf=\"modal && CatList.length > 0\">\n  <div class=\"cart__modal\">\n    <div class=\"cart__modal-close\" (click)=\"closemodal()\"><i class=\"mdi mdi-close\"></i></div>\n    <div class=\"cart__modal-title\">{{modalName}}</div>\n    <div class=\"cart__modal-text\">В какой день добавить блюдо?</div>\n\n    <div class=\"cart__modal-week\">\n      <div class=\"cart__modal-day\" *ngFor=\"let day of modaldays\" (click)=\"addMineMenu(day.value)\">\n        {{day.name}}\n      </div>\n\n    </div>\n  </div>\n</div>"
+module.exports = "<app-catfilter (searchEvent)=\"FilteredData()\" (resetSearch)=\"resetSearch()\"  [listCartId]=\"CatListId\"></app-catfilter>\n\n<div class=\"preloader\" *ngIf=\"preloader\">\n  <div class=\"preloader__status\"></div>\n</div>\n\n\n\n\n<div class=\"cat\" infiniteScroll [infiniteScrollDistance]=\"0\" [infiniteScrollThrottle]=\"50\" [infiniteScrollDisabled]=\"stopinterscroll\" (scrolled)=\"onScroll()\" *ngIf=\"viewCartList.length > 0\">\n  <div class=\"cat__item\" id=\"{{item.Id}}\" [class.active]=\"item.Id == activeItem\" [class.big]=\"item.Id == bigcart\" *ngFor=\"let item of viewCartList; trackBy: trackByFn\">\n    <div class=\"cat__category\">{{item.Category}} {{item.Id}}</div>\n    <div class=\"cat__img\" [ngStyle]=\"{'background-image': item.Img}\">\n      <div class=\"cat__img-bg\" (click)=\"resizecart(item.Id)\"></div>\n      <div class=\"cat__btn\">\n        <div [routerLink]=\"['/cart', item.Id]\" class=\"cat__btn-size\"><i class=\"mdi mdi-link\"></i></div>\n        <div class=\"cat__btn-add\" (click)=\"openmodal(item.Name, item.Id)\"><i class=\"mdi mdi-plus\"></i></div>\n        <div class=\"cat__btn-tabs\" (click)=\"switchtabs(item.Id)\">\n          <i class=\"mdi mdi-silverware\"></i>\n          <i class=\"mdi mdi-playlist-check\"></i>\n        </div>\n      </div>\n    </div>\n    <div class=\"cat__tabs\">\n      <div class=\"cat__tab cat__tab_one\">\n        <div class=\"cat__title\" (click)=\"resizecart(item.Id)\">{{item.Name}}</div>\n        <div class=\"cat__title-mini\">Ингредиенты</div>\n        <div class=\"cat__list\">\n          <div class=\"cat__list-item\" *ngFor=\"let product of item.Ingredients\">\n\n            <div class=\"cat__list-title\">{{product[0]}} </div>\n            <div class=\"cat__list-value\">{{product[1]}} </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"cat__tab cat__tab_two\">\n        <div class=\"cat__title\" (click)=\"resizecart(item.Id)\">{{item.Name}}</div>\n        <div class=\"cat__title-mini\">Приготовление: <span>{{item.Time}} мин</span></div>\n        <div class=\"cat__text cat__text_big\">\n          {{item.Comment}}\n        </div>\n        <div class=\"cat__text\" *ngIf=\"item.Comment.length < 300\">\n          {{item.Comment}}\n        </div>\n        <div class=\"cat__text\" *ngIf=\"item.Comment.length >= 300\">\n          {{item.Comment.substring(0, 300) + ' ...'}}\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n<div class=\"cart__modal-wrap\" *ngIf=\"modal && CatList.length > 0\">\n  <div class=\"cart__modal\">\n    <div class=\"cart__modal-close\" (click)=\"closemodal()\"><i class=\"mdi mdi-close\"></i></div>\n    <div class=\"cart__modal-title\">{{modalName}}</div>\n    <div class=\"cart__modal-text\">В какой день добавить блюдо?</div>\n\n    <div class=\"cart__modal-week\">\n      <div class=\"cart__modal-day\" *ngFor=\"let day of modaldays\" (click)=\"addMineMenu(day.value)\">\n        {{day.name}}\n      </div>\n\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1661,13 +1661,13 @@ var CatComponent = /** @class */ (function () {
         this.stopinterscroll = false;
     };
     CatComponent.prototype.resizecart = function (id) {
-        if (this.bigcart == id) {
+        if (this.bigcart == id && window.innerWidth > 767) {
             this.bigcart = null;
             this.bigcartMarkerOn = false;
             this.bigcartMarkerOff = true;
             this.enebleItem();
         }
-        else {
+        else if (window.innerWidth > 767) {
             this.bigcart = id;
             this.bigcartMarkerOn = true;
             this.bigcartMarkerOff = false;
@@ -1681,10 +1681,10 @@ var CatComponent = /** @class */ (function () {
         for (var i = 0; i < ArrallDom.length; i++) {
             if (ArrallDom[i].id == id) {
                 //для планшетов
-                if (countEl == 1 && window.innerWidth <= 1199 && window.innerWidth > 767) {
+                if (countEl == 1 && window.innerWidth <= 1199) {
                     ArrallDom[i + 1].classList.add('disabled');
                 }
-                if (countEl == 2 && window.innerWidth <= 1199 && window.innerWidth > 767) {
+                if (countEl == 2 && window.innerWidth <= 1199) {
                     ArrallDom[i - 1].classList.add('disabled');
                 }
                 //для широких экранов
@@ -1949,9 +1949,6 @@ var CatserviceService = /** @class */ (function () {
     CatserviceService.prototype.AddReceptiforBase = function (recepi) {
         var postData = recepi;
         this.db.database.ref().child('/catalog2').push(postData).key;
-        // var updates = {};
-        // updates['/catalog2/' + Newkey] = postData;
-        // return this.db.database.ref().update(updates); 
     };
     CatserviceService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2520,7 +2517,7 @@ var TopmenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"weekfilter\">\n  <div class=\"weekfilter__header\">\n    <div class=\"weekfilter__header-item weekfilter__header-item_itemo\" (click)=\"tabsweek('day0')\"\n      [class.active]=\"activeweekday=='day0'\">Неделя\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item1\" (click)=\"tabsweek('day1')\"\n      [class.active]=\"activeweekday=='day1'\">Пн\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item2\" (click)=\"tabsweek('day2')\"\n      [class.active]=\"activeweekday=='day2'\">Вт\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item3\" (click)=\"tabsweek('day3')\"\n      [class.active]=\"activeweekday=='day3'\">Ср\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item4\" (click)=\"tabsweek('day4')\"\n      [class.active]=\"activeweekday=='day4'\">Чт\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item5\" (click)=\"tabsweek('day5')\"\n      [class.active]=\"activeweekday=='day5'\">Пт\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item6\" (click)=\"tabsweek('day6')\"\n      [class.active]=\"activeweekday=='day6'\">Сб\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item7\" (click)=\"tabsweek('day7')\"\n      [class.active]=\"activeweekday=='day7'\">Вс\n    </div>\n  </div>\n</div>\n\n\n<!-- <div *ngIf=\"activeweekday == 'day0' && weekOn\"> -->\n\n<div class=\"menu__forweek\" [ngClass]=\"{'menu__forweek-print': printver}\">\n\n  <div class=\"menu__forweek-btn\" *ngIf=\"activeweekday == 'day0' && auth\">\n    <div class=\"btn desktop\">Cписок продуктов<i class=\"mdi mdi-shopping\"></i></div>\n    <div class=\"btn desktop\">Очистить меню<i class=\"mdi mdi-close\"></i></div>\n    <div class=\"btn\" (click)=\"ptintversion()\" [ngClass]=\"{'active': printver}\">Версия для печати<i\n        class=\"mdi mdi-printer\"></i></div>\n  </div>\n\n  <div class=\"menu__message\" *ngIf=\"!auth\">\n    <div>\n      <h2>Для выбора блюда необходимо зарегистрироваться.</h2>\n      <p>Пока вы можете просмотреть предлагаемые блюда в разделе \"Каталог блюд\".</p>\n      <div class=\"menu__message_btn-wrap\">\n        <div routerLink=\"/\" class=\"btn menu__message_btn\">Перейти в раздел Каталог блюд</div>\n      </div>\n    </div>\n  </div>\n\n  <div *ngFor=\"let onedayweek of massForWeek\">\n\n    <div class=\"menu__message\" *ngIf=\"onedayweek.dayvalue == activeweekday && onedayweek.idcart.length == 0\">\n      <div>\n        <h2>Вы еще не выбрали ни одного блюда.</h2>\n        <p>Перейдите в раздел \"Каталог блюд\" и сделайте свой выбор.</p>\n        <div class=\"menu__message_btn-wrap\">\n          <div routerLink=\"/\" class=\"btn menu__message_btn\">Перейти в раздел Каталог блюд</div>\n        </div>\n      </div>\n    </div>\n\n\n    <div class=\"menu menu_list\" *ngIf=\"activeweekday == onedayweek.dayvalue || activeweekday == 'day0'\">\n\n      <!-- <div class=\"menu__forweek-title\" *ngIf=\"printver\">{{onedayweek.day}}</div> -->\n      <div class=\"menu__cart\" *ngFor=\"let idcart of onedayweek.idcart\">\n        <div class=\"menu__cart-left\" [ngStyle]=\"{'background-image': idcart.Img}\"></div>\n        <div class=\"menu__cart-right\">\n          <div class=\"menu__cart-btn menu__cart-btn_minus\" (click)=\"removeCart(idcart.Id, onedayweek.dayvalue)\"><i\n              class=\"mdi mdi-minus\"></i>\n          </div>\n          <div class=\"menu__cart-btn menu__cart-btn_plus\" (click)=\"openmodal(idcart.Id)\"><i class=\"mdi mdi-plus\"></i>\n          </div>\n          <div class=\"menu__cart-btn menu__cart-btn_week\">{{onedayweek.dayshort}}</div>\n          <div class=\"menu__cart-title\">{{idcart.Name}}</div>\n          <div class=\"menu__cart-category-wrap\">\n            <div class=\"menu__cart-category\">{{idcart.Category}} {{idcart.Id}}</div>\n            <div class=\"menu__cart-category menu__cart-category_time\">Время приготовления: {{idcart.Time}} мин.</div>\n          </div>\n          <div class=\"menu__cart-textwrap\">\n            <div class=\"menu__cart-textleft\">\n              <div class=\"menu__cart-textleft-title\">Приготовление</div>\n              <div *ngFor=\"let comment of idcart.Comment\" class=\"menu__cart-textleft-text\">\n                {{comment}}\n              </div>\n            </div>\n            <div class=\"menu__cart-textright\">\n              <div class=\"menu__cart-textleft-title\">Продукты</div>\n              <div *ngFor=\"let product of idcart.Ingredients\" class=\"menu__cart-string\">\n\n                <div class=\"menu__cart-textright-title\">{{product[0]}}</div>\n                <div class=\"menu__cart-textright-value\">{{product[1]}}</div>\n              </div>\n\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<div class=\"cart__modal-wrap\" *ngIf=\"modal && eatMassAll && eatMassAll.length > 0\">\n  <div class=\"cart__modal\">\n    <div class=\"cart__modal-close\" (click)=\"closemodal()\"><i class=\"mdi mdi-close\"></i></div>\n    <!-- <div class=\"cart__modal-title\">{{sortresult[0].Name}}</div> -->\n    <div class=\"cart__modal-text\">В какой день добавить блюдо?</div>\n\n    <div class=\"cart__modal-week\">\n      <div class=\"cart__modal-day\" *ngFor=\"let day of modaldays\" (click)=\"addItemForDifferentrDay(day.value)\"\n        [routerLink]=\"['/menu', day.value]\">\n        {{day.name}}\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"weekfilter\">\n  <div class=\"weekfilter__header\">\n    <div class=\"weekfilter__header-item weekfilter__header-item_itemo\" (click)=\"tabsweek('day0')\"\n      [class.active]=\"activeweekday=='day0'\">Неделя\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item1\" (click)=\"tabsweek('day1')\"\n      [class.active]=\"activeweekday=='day1'\">Пн\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item2\" (click)=\"tabsweek('day2')\"\n      [class.active]=\"activeweekday=='day2'\">Вт\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item3\" (click)=\"tabsweek('day3')\"\n      [class.active]=\"activeweekday=='day3'\">Ср\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item4\" (click)=\"tabsweek('day4')\"\n      [class.active]=\"activeweekday=='day4'\">Чт\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item5\" (click)=\"tabsweek('day5')\"\n      [class.active]=\"activeweekday=='day5'\">Пт\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item6\" (click)=\"tabsweek('day6')\"\n      [class.active]=\"activeweekday=='day6'\">Сб\n    </div>\n    <div class=\"weekfilter__header-item weekfilter__header-item_item7\" (click)=\"tabsweek('day7')\"\n      [class.active]=\"activeweekday=='day7'\">Вс\n    </div>\n  </div>\n</div>\n\n\n<!-- <div *ngIf=\"activeweekday == 'day0' && weekOn\"> -->\n\n<div class=\"menu__forweek\" [ngClass]=\"{'menu__forweek-print': printver}\">\n\n  <div class=\"menu__forweek-btn\" *ngIf=\"activeweekday == 'day0' && auth\">\n    <div class=\"btn desktop\">Cписок продуктов<i class=\"mdi mdi-shopping\"></i></div>\n    <div class=\"btn desktop\" (click)=\"openModalYes()\">Очистить меню<i class=\"mdi mdi-close\"></i></div>\n    <div class=\"btn\" (click)=\"ptintversion()\" [ngClass]=\"{'active': printver}\">Версия для печати<i\n        class=\"mdi mdi-printer\"></i></div>\n  </div>\n\n  <div class=\"menu__message\" *ngIf=\"!auth\">\n    <div>\n      <h2>Для выбора блюда необходимо зарегистрироваться.</h2>\n      <p>Пока вы можете просмотреть предлагаемые блюда в разделе \"Каталог блюд\".</p>\n      <div class=\"menu__message_btn-wrap\">\n        <div routerLink=\"/\" class=\"btn menu__message_btn\">Перейти в раздел Каталог блюд</div>\n      </div>\n    </div>\n  </div>\n\n  <div *ngFor=\"let onedayweek of massForWeek\">\n\n    <div class=\"menu__message\" *ngIf=\"onedayweek.dayvalue == activeweekday && onedayweek.idcart.length == 0\">\n      <div>\n        <h2>Вы еще не выбрали ни одного блюда.</h2>\n        <p>Перейдите в раздел \"Каталог блюд\" и сделайте свой выбор.</p>\n        <div class=\"menu__message_btn-wrap\">\n          <div routerLink=\"/\" class=\"btn menu__message_btn\">Перейти в раздел Каталог блюд</div>\n        </div>\n      </div>\n    </div>\n\n\n    <div class=\"menu menu_list\" *ngIf=\"activeweekday == onedayweek.dayvalue || activeweekday == 'day0'\">\n\n      <!-- <div class=\"menu__forweek-title\" *ngIf=\"printver\">{{onedayweek.day}}</div> -->\n      <div class=\"menu__cart\" *ngFor=\"let idcart of onedayweek.idcart\">\n        <div class=\"menu__cart-left\" [ngStyle]=\"{'background-image': idcart.Img}\"></div>\n        <div class=\"menu__cart-right\">\n          <div class=\"menu__cart-btn menu__cart-btn_minus\" (click)=\"removeCart(idcart.Id, onedayweek.dayvalue)\"><i\n              class=\"mdi mdi-minus\"></i>\n          </div>\n          <div class=\"menu__cart-btn menu__cart-btn_plus\" (click)=\"openmodal(idcart.Id)\"><i class=\"mdi mdi-plus\"></i>\n          </div>\n          <div class=\"menu__cart-btn menu__cart-btn_week\">{{onedayweek.dayshort}}</div>\n          <div class=\"menu__cart-title\">{{idcart.Name}}</div>\n          <div class=\"menu__cart-category-wrap\">\n            <div class=\"menu__cart-category\">{{idcart.Category}} {{idcart.Id}}</div>\n            <div class=\"menu__cart-category menu__cart-category_time\">Время приготовления: {{idcart.Time}} мин.</div>\n          </div>\n          <div class=\"menu__cart-textwrap\">\n            <div class=\"menu__cart-textleft\">\n              <div class=\"menu__cart-textleft-title\">Приготовление</div>\n              <div *ngFor=\"let comment of idcart.Comment\" class=\"menu__cart-textleft-text\">\n                {{comment}}\n              </div>\n            </div>\n            <div class=\"menu__cart-textright\">\n              <div class=\"menu__cart-textleft-title\">Продукты</div>\n              <div *ngFor=\"let product of idcart.Ingredients\" class=\"menu__cart-string\">\n\n                <div class=\"menu__cart-textright-title\">{{product[0]}}</div>\n                <div class=\"menu__cart-textright-value\">{{product[1]}}</div>\n              </div>\n\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<div class=\"cart__modal-wrap\" *ngIf=\"modal && eatMassAll && eatMassAll.length > 0\">\n  <div class=\"cart__modal\">\n    <div class=\"cart__modal-close\" (click)=\"closemodal()\"><i class=\"mdi mdi-close\"></i></div>\n    <!-- <div class=\"cart__modal-title\">{{sortresult[0].Name}}</div> -->\n    <div class=\"cart__modal-text\">В какой день добавить блюдо?</div>\n\n    <div class=\"cart__modal-week\">\n      <div class=\"cart__modal-day\" *ngFor=\"let day of modaldays\" (click)=\"addItemForDifferentrDay(day.value)\"\n        [routerLink]=\"['/menu', day.value]\">\n        {{day.name}}\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"cart__modal-wrap\" *ngIf=\"modalYes\">\n  <div class=\"cart__modal\">\n    <div class=\"cart__modal-close\" (click)=\"closemodalYes()\"><i class=\"mdi mdi-close\"></i></div>\n     <div class=\"cart__modal-title\">Подтверждение</div>\n    <div class=\"cart__modal-text\">Очстить меню</div>\n    <div class=\"cart__modal-yes-btn\">\n      <button class=\"btn\" (click)=\"clearALLMenu()\">Очистить</button>\n      <button class=\"btn btn_dark\" (click)=\"closemodalYes()\">Закрыть окно</button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2589,6 +2586,7 @@ var MenuComponent = /** @class */ (function () {
         this.massForWeek = [];
         this.printver = false;
         this.modal = false;
+        this.modalYes = false;
         this.auth = false;
         this.modaldays = [
             { name: 'Пн', value: 'day1' },
@@ -2714,6 +2712,31 @@ var MenuComponent = /** @class */ (function () {
     MenuComponent.prototype.closemodal = function () {
         this.addId = null;
         this.modal = false;
+    };
+    MenuComponent.prototype.closemodalYes = function () {
+        this.modalYes = false;
+    };
+    MenuComponent.prototype.openModalYes = function () {
+        this.modalYes = true;
+    };
+    MenuComponent.prototype.clearALLMenu = function () {
+        var _this = this;
+        this.userinfoservice.loadCurrentUser().subscribe(function (user) {
+            if (user) {
+                _this.userId = user.uid;
+                var dataToSave = {
+                    day1: [-1],
+                    day2: [-1],
+                    day3: [-1],
+                    day4: [-1],
+                    day5: [-1],
+                    day6: [-1],
+                    day7: [-1]
+                };
+                _this.db.database.ref('Users/' + _this.userId + '/mymenu/').update(dataToSave);
+                _this.closemodalYes();
+            }
+        });
     };
     MenuComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2890,7 +2913,7 @@ var OneCartComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"background: white; max-width: 1200px; margin: 0 auto; padding: 20px; border-radius: 20px;\">\n\n\n  <div *ngFor=\"let user of users\">\n    {{user.useremail}}\n    <div *ngFor=\"let item of user.mymeny\">\n      {{item}}\n    </div>\n\n  </div>\n  <hr>\n<!--  <div *ngFor=\"let item of books\">-->\n<!--  {{item.Name}}-->\n<!--  </div>-->\n\n  <div class=\"btn\" (click)=\"writeUserData(300, 'mail@ru.ru', [10, 30, 40])\">Записать данные</div>\n\n  <div class=\"btn\" (click)=\"getWeek()\">получить неделю</div>\n\n</div>\n"
+module.exports = "<div style=\"background: white; max-width: 1200px; margin: 0 auto; padding: 20px; border-radius: 20px;\">\n\n <!-- <div *ngFor=\"let item of testCat$ | async\">\n   <div>{{item}}</div>\n </div> -->\n\n\n\n</div>\n\n"
 
 /***/ }),
 
@@ -2918,6 +2941,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/database */ "./node_modules/angularfire2/database/index.js");
 /* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(angularfire2_database__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _testsercvice_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./testsercvice.service */ "./src/app/test/testsercvice.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2929,23 +2953,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 // import functions from 'firebase';
 var TestComponent = /** @class */ (function () {
-    function TestComponent(db) {
-        var _this = this;
+    function TestComponent(db, testService) {
+        // this.testCat$ = this.testService.getCart();
+        // this.testCat$ = this.db.list('catalog2/').valueChanges();
+        this.testService = testService;
         this.week = [];
-        this.db = db;
-        db.list('/Users').valueChanges().subscribe(function (users) {
-            _this.users = users;
-        });
     }
-    TestComponent.prototype.writeUserData = function (id, email, mymenu) {
-        console.log(this.db);
-        this.db.database.ref('Users/' + id).set({
-            useremail: email,
-            mymeny: mymenu
-        });
-    };
     // getWeek() {
     //   this.week = this.userinfoservice.getWeekServ();
     //   console.log(this.week);
@@ -2958,9 +2974,51 @@ var TestComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./test.component.html */ "./src/app/test/test.component.html"),
             styles: [__webpack_require__(/*! ./test.component.scss */ "./src/app/test/test.component.scss")]
         }),
-        __metadata("design:paramtypes", [angularfire2_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
+        __metadata("design:paramtypes", [angularfire2_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"], _testsercvice_service__WEBPACK_IMPORTED_MODULE_2__["TestsercviceService"]])
     ], TestComponent);
     return TestComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/test/testsercvice.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/test/testsercvice.service.ts ***!
+  \**********************************************/
+/*! exports provided: TestsercviceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TestsercviceService", function() { return TestsercviceService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/database */ "./node_modules/angularfire2/database/index.js");
+/* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(angularfire2_database__WEBPACK_IMPORTED_MODULE_1__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TestsercviceService = /** @class */ (function () {
+    function TestsercviceService(db) {
+        this.db = db;
+        this.testCat = [];
+    }
+    TestsercviceService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [angularfire2_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
+    ], TestsercviceService);
+    return TestsercviceService;
 }());
 
 
@@ -3007,7 +3065,6 @@ var UserinfoService = /** @class */ (function () {
         this.authUser = false;
         this.logoutSubject = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.logoinSubject = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.eatMassAll = [];
         this.$logoutNotifier = this.logoutSubject.asObservable();
         this.$logintNotifier = this.logoinSubject.asObservable();
     }
@@ -3075,7 +3132,7 @@ var UserinfoService = /** @class */ (function () {
                 _this.db.database.ref('/Users/' + _this.userId + '/mymenu/' + dayNum).once('value').then(function (day) {
                     var daylist = day.val();
                     var searcId = daylist.indexOf(id);
-                    if (daylist[0] == -1) {
+                    if (daylist[0] === -1) {
                         dataToSave[dayNum] = [id];
                         _this.db.database.ref('Users/' + _this.userId + '/mymenu/').update(dataToSave);
                         return;

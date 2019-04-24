@@ -34,7 +34,7 @@
 
   <div class="menu__forweek-btn" *ngIf="activeweekday == 'day0' && auth">
     <div class="btn desktop">Cписок продуктов<i class="mdi mdi-shopping"></i></div>
-    <div class="btn desktop">Очистить меню<i class="mdi mdi-close"></i></div>
+    <div class="btn desktop" (click)="openModalYes()">Очистить меню<i class="mdi mdi-close"></i></div>
     <div class="btn" (click)="ptintversion()" [ngClass]="{'active': printver}">Версия для печати<i
         class="mdi mdi-printer"></i></div>
   </div>
@@ -114,6 +114,18 @@
         [routerLink]="['/menu', day.value]">
         {{day.name}}
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart__modal-wrap" *ngIf="modalYes">
+  <div class="cart__modal">
+    <div class="cart__modal-close" (click)="closemodalYes()"><i class="mdi mdi-close"></i></div>
+     <div class="cart__modal-title">Подтверждение</div>
+    <div class="cart__modal-text">Очстить меню</div>
+    <div class="cart__modal-yes-btn">
+      <button class="btn" (click)="clearALLMenu()">Очистить</button>
+      <button class="btn btn_dark" (click)="closemodalYes()">Закрыть окно</button>
     </div>
   </div>
 </div>

@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { GetJsonService } from '../get-json.service';
-import { UserinfoService } from '../userinfo.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import {Component, OnInit, Input, OnDestroy, ViewEncapsulation} from '@angular/core';
+import {GetJsonService} from '../get-json.service';
+import {UserinfoService} from '../userinfo.service';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
   selector: 'app-menu',
@@ -15,13 +15,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 export class MenuComponent implements OnInit, OnDestroy {
   private dayMass: any = [
-    { name: 'Понедельник', nameshort: 'Пн', value: 'day1' },
-    { name: 'Вторник', nameshort: 'Вт', value: 'day2' },
-    { name: 'Среда', nameshort: 'Ср', value: 'day3' },
-    { name: 'Четверг', nameshort: 'Чт', value: 'day4' },
-    { name: 'Пятница', nameshort: 'Пт', value: 'day5' },
-    { name: 'Суббота', nameshort: 'Сб', value: 'day6' },
-    { name: 'Воскресенье', nameshort: 'Вс', value: 'day7' }
+    {name: 'Понедельник', nameshort: 'Пн', value: 'day1'},
+    {name: 'Вторник', nameshort: 'Вт', value: 'day2'},
+    {name: 'Среда', nameshort: 'Ср', value: 'day3'},
+    {name: 'Четверг', nameshort: 'Чт', value: 'day4'},
+    {name: 'Пятница', nameshort: 'Пт', value: 'day5'},
+    {name: 'Суббота', nameshort: 'Сб', value: 'day6'},
+    {name: 'Воскресенье', nameshort: 'Вс', value: 'day7'}
   ];
 
   private eatMassAll: any = [];
@@ -33,17 +33,18 @@ export class MenuComponent implements OnInit, OnDestroy {
   public userId: string;
   public week: any;
   public modal = false;
+  public modalYes = false;
   public addId: any;
 
   public auth = false;
   public modaldays = [
-    { name: 'Пн', value: 'day1' },
-    { name: 'Вт', value: 'day2' },
-    { name: 'Ср', value: 'day3' },
-    { name: 'Чт', value: 'day4' },
-    { name: 'Пт', value: 'day5' },
-    { name: 'Сб', value: 'day6' },
-    { name: 'Вс', value: 'day7' }
+    {name: 'Пн', value: 'day1'},
+    {name: 'Вт', value: 'day2'},
+    {name: 'Ср', value: 'day3'},
+    {name: 'Чт', value: 'day4'},
+    {name: 'Пт', value: 'day5'},
+    {name: 'Сб', value: 'day6'},
+    {name: 'Вс', value: 'day7'}
   ];
   activeweekday: any;
   weekOn: boolean;
@@ -62,14 +63,13 @@ export class MenuComponent implements OnInit, OnDestroy {
 
 
   getcarentday() {
-    const carentday = (new Date().toLocaleString('ru-ru', { weekday: 'long' }));
+    const carentday = (new Date().toLocaleString('ru-ru', {weekday: 'long'}));
     for (let i = 0; i < this.dayMass.length; i++) {
       if (this.dayMass[i].name.toLowerCase() === carentday) {
         this.activeweekday = this.dayMass[i].value;
       }
     }
   }
-
 
 
   showConfigResponse() {
@@ -118,6 +118,7 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.massForWeek = [];
     }
   }
+
   clearUserMenu() {
     this.eatMassAll = [];
     this.massForWeek = [];
@@ -134,10 +135,9 @@ export class MenuComponent implements OnInit, OnDestroy {
           let targetday = daylist.indexOf(id);
           if (daylist.length == 1) {
             daylist[0] = -1;
-            dataToSave[dayNum] = daylist
+            dataToSave[dayNum] = daylist;
             this.db.database.ref('Users/' + this.userId + '/mymenu/').update(dataToSave);
-          }
-          else {
+          } else {
             daylist.splice(targetday, 1);
             dataToSave[dayNum] = daylist;
             this.db.database.ref('Users/' + this.userId + '/mymenu/').update(dataToSave);
@@ -163,6 +163,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   ptintversion() {
     this.printver = !this.printver;
   }
+
   //модалка
   addItemForDifferentrDay(dayNum) {
     this.userinfoservice.addItem(dayNum, this.addId);
@@ -179,6 +180,33 @@ export class MenuComponent implements OnInit, OnDestroy {
   closemodal() {
     this.addId = null;
     this.modal = false;
+  }
+
+  closemodalYes() {
+    this.modalYes = false;
+  }
+
+  openModalYes() {
+    this.modalYes = true;
+  }
+
+  clearALLMenu() {
+    this.userinfoservice.loadCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
+        const dataToSave = {
+          day1: [-1],
+          day2: [-1],
+          day3: [-1],
+          day4: [-1],
+          day5: [-1],
+          day6: [-1],
+          day7: [-1]
+        };
+        this.db.database.ref('Users/' + this.userId + '/mymenu/').update(dataToSave);
+        this.closemodalYes();
+      }
+    });
   }
 
 

@@ -30,6 +30,14 @@
     &-text {
       margin-bottom: $sp;
     }
+    &-yes-btn {
+      display: flex;
+      .btn {
+        height: 50px;
+        margin-right: $sp/2;
+        flex: 1;
+      }
+    }
     &-close {
       position: absolute;
       top: -20px;

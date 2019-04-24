@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {TestsercviceService} from './testsercvice.service';
+import {Observable} from 'rxjs';
+import {Observer} from 'firebase';
 
 // import functions from 'firebase';
 
@@ -14,26 +17,12 @@ export class TestComponent implements OnInit {
   private userinfoservice: any;
   private db: any;
   public week = [];
+  // public testCat = new Observable<any>;
 
-  constructor(db: AngularFireDatabase) {
+  constructor(db: AngularFireDatabase, public testService: TestsercviceService) {
 
-    this.db = db;
-    db.list('/Users').valueChanges().subscribe(users => {
-      this.users = users;
-    });
 
   }
-
-
-  writeUserData(id, email, mymenu) {
-    console.log(this.db);
-    this.db.database.ref('Users/' + id).set({
-      useremail: email,
-      mymeny: mymenu
-    });
-  }
-
-
 
 
   // getWeek() {
@@ -42,7 +31,12 @@ export class TestComponent implements OnInit {
   // }
 
 
-  ngOnInit() {
-  }
+  // ngOnInit() {
+  //   this.testService.getCart().subscribe(x => {
+  //    console.log(x);
+  //    this.testCat = x;
+  //   });
+  //
+  // }
 
 }
