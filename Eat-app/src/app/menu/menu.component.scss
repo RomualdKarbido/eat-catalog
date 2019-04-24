@@ -384,6 +384,8 @@
     }
     &__message {
       margin-top: 20%;
+      //min-height: calc(100vh - 300px);
+      //background: red;
       div {
         h2 {
           font-size: 28px;

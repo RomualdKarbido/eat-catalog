@@ -24,6 +24,9 @@ export class TestComponent implements OnInit {
 
   }
 
+  ngOnInit(): void {
+  }
+
 
   // getWeek() {
   //   this.week = this.userinfoservice.getWeekServ();

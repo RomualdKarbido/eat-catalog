@@ -52,10 +52,28 @@ body {
   width: 100%;
   padding: 0!important;
   margin: 0 !important;
-  background: url('/assets/bg.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-attachment:fixed;
+  //background: url('/assets/bg.jpg');
+  //background-size: cover !important;
+  //background-position: center top !important;
+  //background-attachment:fixed !important;
+
+
+  //background: url('/assets/bg.jpg') no-repeat center center fixed;
+  //-webkit-background-size: cover;
+  //-moz-background-size: cover;
+  //-o-background-size: cover;
+  //background-size: cover !important;
+}
+.body__img {
+  background: url('/assets/bg.jpg') no-repeat top center;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 100vh;
+  box-sizing: border-box;
+  background-size: cover !important;
+  position: fixed;
+  z-index: 1;
 }
 .mob {
   display: none;

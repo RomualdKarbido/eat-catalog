@@ -1,44 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSelectModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TestComponent } from './test/test.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes, Router} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import {TestComponent} from './test/test.component';
 
-import { AppComponent } from './app.component';
-import { CatComponent } from './catalog/cat.component';
-import { CatfilterComponent } from './catalog/catfilter/catfilter.component';
-import { TopmenuComponent } from './header/topmenu.component';
-import { OneCartComponent } from './one-cart/one-cart.component';
-import { MenuComponent } from './menu/menu.component';
-import { FormsModule } from '@angular/forms';
+import {AppComponent} from './app.component';
+import {CatComponent} from './catalog/cat.component';
+import {CatfilterComponent} from './catalog/catfilter/catfilter.component';
+import {TopmenuComponent} from './header/topmenu.component';
+import {OneCartComponent} from './one-cart/one-cart.component';
+import {MenuComponent} from './menu/menu.component';
+import {FormsModule} from '@angular/forms';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {environment} from '../environments/environment';
 
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 import * as firebase from 'firebase';
-import { AddRecipeComponent } from './header/add-recipe/add-recipe.component';
-import { ProductComponent } from './header/add-recipe/product/product.component';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {AddRecipeComponent} from './header/add-recipe/add-recipe.component';
+import {ProductComponent} from './header/add-recipe/product/product.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 
 firebase.initializeApp(environment.firebase);
 
 const appRoutes: Routes = [
-  { path: 'cart/:id', component: OneCartComponent },
-  { path: 'test', component: TestComponent },
-  { path: 'menu/:day', component: MenuComponent },
-  { path: 'add_recipe', component: AddRecipeComponent },
-  { path: '', pathMatch: 'full', component: CatComponent },
+  {path: 'cart/:id', component: OneCartComponent},
+  {path: 'test', component: TestComponent},
+  {path: 'menu/:day', component: MenuComponent},
+  {path: 'add_recipe', component: AddRecipeComponent},
+  {path: '', pathMatch: 'full', component: CatComponent},
 
 ];
-
 
 
 @NgModule({
@@ -58,21 +57,22 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatSelectModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes
-    ),
+    RouterModule.forRoot(appRoutes, {
+      scrollPositionRestoration: 'top'
+    }),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase, "eatCatalog"),
+    AngularFireModule.initializeApp(environment.firebase, 'eatCatalog'),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
 
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
