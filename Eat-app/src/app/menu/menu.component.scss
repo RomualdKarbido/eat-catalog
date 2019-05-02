@@ -301,6 +301,42 @@
   }
 }
 
+.productlist {
+  padding: 50px;
+  display: block;
+  &__list {
+    //display: flex;
+    column-count: 3;
+  }
+  &__title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  &__item {
+    display: flex;
+    border-bottom: 1px dotted gray;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  &__name {
+    background: white;
+    padding: 5px;
+    position: relative;
+    margin-bottom: -8px;
+    font-size: 13px;
+  }
+  &__value {
+    background: white;
+    padding: 5px;
+    position: relative;
+    margin-bottom: -8px;
+    font-size: 13px;
+
+  }
+}
+
 @keyframes vizible {
   from {
     opacity: 0;

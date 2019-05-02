@@ -32,4 +32,5 @@ export class CatserviceService {
     const postData = recepi;
     this.db.database.ref().child('/catalog2').push(postData).key;
   }
+
 }

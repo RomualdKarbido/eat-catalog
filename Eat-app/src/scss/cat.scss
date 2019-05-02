@@ -18,7 +18,7 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     position: relative;
     background-size: cover !important;
     outline: none;
-    transition: all 0.2s;
+    //transition: all 0.2s;
     position: relative;
     background-position: center center !important;
     &-bg {
@@ -49,6 +49,7 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
     background: white;
     position: relative;
+
     &.disabled {
       display: none;
     }
@@ -68,6 +69,8 @@ $coll-w: calc((100% - (#{$coll} - 1) * #{$sp}) / #{$coll});
       }
       .cat__tab_two {
       }
+    }
+    &:hover {
     }
 
     &:nth-child(3n) {

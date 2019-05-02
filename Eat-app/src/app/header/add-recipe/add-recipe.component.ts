@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewEncapsulation, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input} from '@angular/core';
 import {ProductItem} from 'src/app/models/product-item';
 import {Recepi} from 'src/app/models/recepi.model';
 import {CatserviceService} from '../../catalog/catservice.service';
+import {Import} from '@angular/compiler-cli/src/ngtsc/host';
 
 
 @Component({
@@ -11,8 +12,7 @@ import {CatserviceService} from '../../catalog/catservice.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AddRecipeComponent implements OnInit {
-  @Output()
-  onClose: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
 
   public recepiName: string;
@@ -21,7 +21,8 @@ export class AddRecipeComponent implements OnInit {
   public recepiTime: string;
   public recepiId: number;
   public prodictList: ProductItem[] = [];
-
+  @Input() CartEdit = {};
+  public edit = false;
 
   public convertProduct = [];
 
@@ -65,8 +66,8 @@ export class AddRecipeComponent implements OnInit {
     let prondAll = '';
 
     for (let i = 0; i < this.prodictList.length; i++) {
-      if (this.prodictList.length - 1 != i) {
-        stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value + '\n';
+      if (this.prodictList.length - 1 !== i) {
+        stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value + '\\n';
       } else {
         stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value;
       }
@@ -75,7 +76,7 @@ export class AddRecipeComponent implements OnInit {
     }
 
 
-    let recepiNew = {} as Recepi;
+    const recepiNew = {} as Recepi;
     recepiNew.Category = this.recepiCategory;
     recepiNew.Comment = this.recepiComment;
     recepiNew.Id = this.recepiId;
@@ -87,8 +88,36 @@ export class AddRecipeComponent implements OnInit {
     this.closeModal();
   }
 
+  editCart() {
+    this.recepiName = this.CartEdit.Name;
+    this.recepiComment = this.CartEdit.Comment;
+    this.recepiId = this.CartEdit.Id;
+    this.recepiCategory = this.CartEdit.Category;
+    this.recepiTime = this.CartEdit.Time;
+    console.log(this.CartEdit.Ingredients);
+    const Ing = this.CartEdit.Ingredients.split('\\n');
+    console.log(Ing);
+    for (let i = 0; i < Ing.length; i++) {
+      const IngSplit = Ing[i].split('--');
+      if (i > 0) {
+        this.addEmptyItem(i);
+      }
+      this.prodictList[i].name = IngSplit[0];
+      this.prodictList[i].value = IngSplit[1];
+    }
+  }
+  saveRecepi() {
+    console.log('Надо сохранить рецепт');
+  }
+
   ngOnInit() {
     this.addEmptyItem(1);
+    console.log(this.CartEdit);
+
+    if (this.CartEdit.Id) {
+      this.edit = true;
+      this.editCart();
+    }
   }
 
 }

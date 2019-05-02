@@ -5,6 +5,9 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AngularFireDatabase} from 'angularfire2/database';
 
+// import { Pipe, PipeTransform } from '@angular/core';
+
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -29,12 +32,14 @@ export class MenuComponent implements OnInit, OnDestroy {
   public roureday: string;
   public cartparams: any;
   public newArrDay: any[];
-  public printver: boolean = false;
+  public printver = false;
   public userId: string;
   public week: any;
   public modal = false;
   public modalYes = false;
   public addId: any;
+  public listProd: boolean;
+  public listProdSort = [];
 
   public auth = false;
   public modaldays = [
@@ -89,8 +94,8 @@ export class MenuComponent implements OnInit, OnDestroy {
             this.getJsonService.getCatItem(id).subscribe(cart => {
 
               cart.Img = 'url(../../assets/eatimg/' + id + '.jpg)';
-              cart.Comment = cart.Comment.split('\n');
-              cart.Ingredients = cart.Ingredients.split('\n');
+              cart.Comment = cart.Comment.split('\\n');
+              cart.Ingredients = cart.Ingredients.split('\\n');
               for (let d = 0; d < cart.Ingredients.length; d++) {
                 cart.Ingredients[d] = cart.Ingredients[d].split('--');
               }
@@ -206,6 +211,34 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.db.database.ref('Users/' + this.userId + '/mymenu/').update(dataToSave);
         this.closemodalYes();
       }
+    });
+  }
+
+  openListProd() {
+    this.listProd = !this.listProd;
+    this.weekProdList();
+  }
+
+  weekProdList() {
+    const timeProdlist = [];
+    for (let i = 0; i < this.massForWeek.length; i++) {
+      for (let j = 0; j < this.massForWeek[i].idcart.length; j++) {
+        for (let k = 0; k < this.massForWeek[i].idcart[j].Ingredients.length; k++) {
+          const prod = {name: '', value: ''};
+          prod.name = this.massForWeek[i].idcart[j].Ingredients[k][0];
+          prod.value = this.massForWeek[i].idcart[j].Ingredients[k][1];
+          timeProdlist.push(prod);
+        }
+      }
+    }
+
+    this.listProdSort = this.sortAB(timeProdlist);
+    console.log(this.listProdSort);
+  }
+
+  sortAB(arr) {
+    return arr.sort(function (a, b) {
+      return a.name === b.name ? 0 : a.name < b.name ? -1 : 1;
     });
   }
 

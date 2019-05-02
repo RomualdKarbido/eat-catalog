@@ -1,7 +1,8 @@
 <div class="cart__modal-wrap">
   <div class="recipe">
     <div class="cart__modal-close" (click)="closeModal()"><i class="mdi mdi-close"></i></div>
-    <div class="recipe__title">Добавить рецепт</div>
+<!--    <div class="recipe__title" >Добавить рецепт</div>-->
+    <div class="recipe__title" >{{edit ?  'Изменить рецепт' : 'Добавить рецепт'}}</div>
     <div class="recipe__scroll">
 
 
@@ -62,7 +63,8 @@
       </div>
     </div>
             <div class="recipe__line recipe__line_btn">
-              <button class="btn" (click)="getNewRectpi()">Добавить рецепт</button>
+              <button class="btn" (click)="getNewRectpi()" *ngIf="!edit">Добавить рецепт</button>
+              <button class="btn" (click)="saveRecepi()" *ngIf="edit">Сохранить рецепт</button>
             </div>
   </div>
 </div>

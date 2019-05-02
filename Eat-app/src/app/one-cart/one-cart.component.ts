@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 
 
 
+
 // import {AngularFireDatabase} from 'angularfire2/database';
 
 
@@ -17,6 +18,8 @@ import { Location } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class OneCartComponent implements OnInit {
+
+
 
   private idCart: any;
   private idCartparams: any;
@@ -39,7 +42,7 @@ export class OneCartComponent implements OnInit {
     private route: ActivatedRoute,
     private getJsonService: GetJsonService,
     public userinfoservice: UserinfoService,
-    private location: Location
+    private location: Location,
   ) {
 
     this.idCartparams = this.route.params;
@@ -54,8 +57,8 @@ export class OneCartComponent implements OnInit {
         const image: string = 'url(../../assets/eatimg/' + this.eatMassAll.Id + '.jpg)';
         this.eatMassAll.Img = image;
 
-        this.eatMassAll.Comment = this.eatMassAll.Comment.split('\n');
-        this.eatMassAll.Ingredients = this.eatMassAll.Ingredients.split('\n');
+        this.eatMassAll.Comment = this.eatMassAll.Comment.split('\\n');
+        this.eatMassAll.Ingredients = this.eatMassAll.Ingredients.split('\\n');
         for (let d = 0; d < this.eatMassAll.Ingredients.length; d++) {
           this.eatMassAll.Ingredients[d] = this.eatMassAll.Ingredients[d].split('--');
         }
@@ -75,6 +78,10 @@ export class OneCartComponent implements OnInit {
   closemodal() {
     this.modal = false;
   }
+  editCart(id) {
+     this.getJsonService.editCartServ(id);
+  }
+
 
   ngOnInit() {
   }

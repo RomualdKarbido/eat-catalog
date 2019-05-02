@@ -26,6 +26,7 @@ export class GetJsonService {
   public LackybtnPush: EventEmitter<any> = new EventEmitter();
   public filterOn: EventEmitter<any> = new EventEmitter();
   public filterOff: EventEmitter<any> = new EventEmitter();
+  public editCartId = new EventEmitter();
   public statefilter = false;
 
   resetCounterService() {
@@ -48,7 +49,9 @@ export class GetJsonService {
     this.LackybtnPush.emit(null);
   }
 
-
+  editCartServ(id) {
+    this.editCartId.emit(id);
+  }
 
   filterVisibleActivate() {
     this.statefilter = !this.statefilter;

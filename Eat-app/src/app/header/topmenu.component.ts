@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
+import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { UserinfoService } from '../userinfo.service';
-import { GetJsonService } from '../get-json.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {UserinfoService} from '../userinfo.service';
+import {GetJsonService} from '../get-json.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -41,8 +41,9 @@ export class TopmenuComponent implements OnInit {
   public menuOpen = false;
   public filterOn = true;
   public finterActive: boolean;
-  public home =  false;
- 
+  public home = false;
+  public CartEdit = {};
+
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -56,11 +57,11 @@ export class TopmenuComponent implements OnInit {
     this.authUser = userinfo.loadCurrentUserLight();
 
     if (this.authUser) {
-      let at = localStorage.getItem('at');
-      let ml = localStorage.getItem('ml');
+      const at = localStorage.getItem('at');
+      const ml = localStorage.getItem('ml');
       this.authUser = true;
       this.emailuser = ml;
-      if (ml == 'robindranat@gmail.com' || ml == '2@2.ru') {
+      if (ml === 'robindranat@gmail.com' || ml === '2@2.ru') {
         this.redactor = true;
       } else {
         this.redactor = false;
@@ -78,30 +79,38 @@ export class TopmenuComponent implements OnInit {
     this.getJsonService.filterOff.subscribe(d => {
       this.finterActive = d;
     });
+    this.getJsonService.editCartId.subscribe(idCart => {
+      this.editCart(idCart);
+    });
 
-    
-    let xx1:any;
-    let yy1:any;
-    router.events.subscribe(x=>{
-      let url:any = x;
-      xx1=yy1;
+
+    let xx1: any;
+    let yy1: any;
+    router.events.subscribe(x => {
+      let url: any = x;
+      xx1 = yy1;
       yy1 = url.url;
-      
-      if(xx1 == '/') {
+
+      if (xx1 == '/') {
         this.home = true;
       } else {
         this.home = false;
       }
     });
- 
   }
 
   filterVisible() {
     this.getJsonService.filterVisibleActivate();
   }
 
+  editCart(id) {
 
-
+    this.getJsonService.getCatItem(id).subscribe(cart => {
+      this.CartEdit = cart;
+      this.addrecepi = true;
+      window.removeEventListener('scroll', this.scrollEvent, true);
+    });
+  }
 
 
   setlackyBtn() {
@@ -119,7 +128,6 @@ export class TopmenuComponent implements OnInit {
       this.menuactive = false;
     }
   };
-
 
 
   reseCounterCat() {
@@ -208,6 +216,7 @@ export class TopmenuComponent implements OnInit {
   }
 
   openModalRecepient() {
+    this.CartEdit = {};
     this.addrecepi = true;
     window.removeEventListener('scroll', this.scrollEvent, true);
   }
@@ -225,7 +234,7 @@ export class TopmenuComponent implements OnInit {
     this.menuOpen = false;
   }
 
- 
+
   ngOnInit() {
     window.addEventListener('scroll', this.scrollEvent, true);
   }

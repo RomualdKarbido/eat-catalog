@@ -85,7 +85,7 @@ export class CatComponent implements OnInit {
 
   //изменяем все карточки
   upgradeListCatalog(cart) {
-    cart.Ingredients = cart.Ingredients.split('\n');
+    cart.Ingredients = cart.Ingredients.split('\\n');
     for (let d = 0; d < cart.Ingredients.length; d++) {
       cart.Ingredients[d] = cart.Ingredients[d].split('--');
     }
