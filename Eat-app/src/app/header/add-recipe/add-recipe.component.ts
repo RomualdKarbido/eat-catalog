@@ -94,9 +94,7 @@ export class AddRecipeComponent implements OnInit {
     this.recepiId = this.CartEdit.Id;
     this.recepiCategory = this.CartEdit.Category;
     this.recepiTime = this.CartEdit.Time;
-    console.log(this.CartEdit.Ingredients);
     const Ing = this.CartEdit.Ingredients.split('\\n');
-    console.log(Ing);
     for (let i = 0; i < Ing.length; i++) {
       const IngSplit = Ing[i].split('--');
       if (i > 0) {
@@ -107,13 +105,33 @@ export class AddRecipeComponent implements OnInit {
     }
   }
   saveRecepi() {
-    console.log('Надо сохранить рецепт');
+
+    let stringProd = null;
+    let prondAll = '';
+    for (let i = 0; i < this.prodictList.length; i++) {
+      if (this.prodictList.length - 1 !== i) {
+        stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value + '\\n';
+      } else {
+        stringProd = this.prodictList[i].name + ' --' + this.prodictList[i].value;
+      }
+
+      prondAll = prondAll + stringProd;
+    }
+
+
+    const recepiNew = {} as Recepi;
+    recepiNew.Category = this.recepiCategory;
+    recepiNew.Comment = this.recepiComment;
+    recepiNew.Id = this.recepiId;
+    recepiNew.Ingredients = prondAll;
+    recepiNew.Name = this.recepiName;
+    recepiNew.Time = String(this.recepiTime);
+    this.catserviceService.saveEditRecepi(recepiNew);
+    this.closeModal();
   }
 
   ngOnInit() {
     this.addEmptyItem(1);
-    console.log(this.CartEdit);
-
     if (this.CartEdit.Id) {
       this.edit = true;
       this.editCart();

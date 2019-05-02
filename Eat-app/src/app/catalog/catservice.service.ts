@@ -28,9 +28,20 @@ export class CatserviceService {
   }
 
   AddReceptiforBase(recepi) {
-
     const postData = recepi;
     this.db.database.ref().child('/catalog2').push(postData).key;
+  }
+  saveEditRecepi(recepi) {
+    this.getCatItemKey(recepi.Id).subscribe(key => {
+      this.db.database.ref().child('/catalog2/' + key).update(recepi);
+    });
+  }
+  getCatItemKey(id): Observable<any> {
+    return Observable.create((obs: Observer<any>) => {
+      this.db.database.ref('catalog2').orderByChild('Id').equalTo(id).on('child_added', snapshot => {
+        obs.next(snapshot.key);
+      });
+    });
   }
 
 }
