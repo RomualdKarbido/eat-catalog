@@ -3,13 +3,15 @@
     <div class="cat-filter__item">
       <div class="cat-filter__item_search">
         <input type="text" placeholder="Поиск" [(ngModel)]="titleFilterValue" (keyup.enter)="hasAnyFilterValue()">
-        <button class="cat-filter__item_search-btn" (click)="hasAnyFilterValue()"><i class="mdi mdi-magnify"></i></button>
-        <button class="cat-filter__item_search-btn cat-filter__item_search-btn_close" (click)="resetSearchforMenu()"><i class="mdi mdi-close"></i></button>
+        <button class="cat-filter__item_search-btn" (click)="hasAnyFilterValue()"><i class="mdi mdi-magnify"></i>
+        </button>
+        <button class="cat-filter__item_search-btn cat-filter__item_search-btn_close" (click)="resetSearchforMenu()"><i
+          class="mdi mdi-close"></i></button>
       </div>
     </div>
     <div class="cat-filter__item">
       <mat-form-field>
-        <mat-select [(value)]="selected" placeholder="Все блюда" (valueChange)="categoryChanged($event)" >
+        <mat-select  [(value)]="selected" placeholder="Все блюда" (valueChange)="categoryChanged($event)">
           <mat-option>Все блюда</mat-option>
           <mat-option value="Завтраки">Завтраки</mat-option>
           <mat-option value="Супы">Супы</mat-option>
@@ -29,7 +31,7 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="btn btn_dark" (click)="lackyBtn()" ><i class="mdi mdi-auto-fix"></i>Мне повезет</div>
+  <div class="btn btn_dark" (click)="lackyBtn()"><i class="mdi mdi-auto-fix"></i>Мне повезет</div>
   <div class="cat-filter__settings">
     <i class="mdi mdi-tune"></i>
   </div>

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input} from 
 import {ProductItem} from 'src/app/models/product-item';
 import {Recepi} from 'src/app/models/recepi.model';
 import {CatserviceService} from '../../catalog/catservice.service';
-import {Import} from '@angular/compiler-cli/src/ngtsc/host';
+// import {Import} from '@angular/compiler-cli/src/ngtsc/host';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class AddRecipeComponent implements OnInit {
   public recepiTime: string;
   public recepiId: number;
   public prodictList: ProductItem[] = [];
-  @Input() CartEdit = {};
+  @Input() CartEdit: any = {};
   public edit = false;
 
   public convertProduct = [];
@@ -40,8 +40,8 @@ export class AddRecipeComponent implements OnInit {
   }
 
   remooveItemRecepient(id: number) {
-    let targetEl = this.prodictList.findIndex(x => x.id == id);
-    if (targetEl != -1) {
+    const targetEl = this.prodictList.findIndex(x => x.id === id);
+    if (targetEl !== -1) {
       this.prodictList.splice(targetEl, 1);
     }
   }
