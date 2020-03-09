@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fbb89bee-daa2-400c-8745-9a58d0471383" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/catalog/cat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/catalog/cat.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/catalog/cat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/catalog/cat.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/catalog/catservice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/catservice.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/add-recipe/add-recipe.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/header/add-recipe/add-recipe.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/models/recepi.model.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models/recepi.model.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/one-cart/one-cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/one-cart/one-cart.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/allservice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/allservice.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/_modal.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +89,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="build:ssr" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:ssr" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="prerender" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -111,6 +111,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build:ssr" />
         <item itemvalue="npm.prerender" />
         <item itemvalue="npm.build" />
       </list>
@@ -143,7 +144,7 @@
       <workItem from="1583656057258" duration="11476000" />
       <workItem from="1583701542967" duration="2768000" />
       <workItem from="1583704561289" duration="1967000" />
-      <workItem from="1583706656687" duration="15040000" />
+      <workItem from="1583706656687" duration="15454000" />
     </task>
     <servers />
   </component>
@@ -162,22 +163,22 @@
       <screen x="0" y="23" width="1920" height="1123" />
     </state>
     <state x="560" y="250" key="#Options/0.23.1920.1123@0.23.1920.1123" timestamp="1583654584237" />
-    <state width="1878" height="267" key="GridCell.Tab.0.bottom" timestamp="1583706925385">
+    <state width="1878" height="267" key="GridCell.Tab.0.bottom" timestamp="1583779311083">
       <screen x="0" y="23" width="1920" height="1123" />
     </state>
-    <state width="1878" height="267" key="GridCell.Tab.0.bottom/0.23.1920.1123@0.23.1920.1123" timestamp="1583706925385" />
-    <state width="1878" height="267" key="GridCell.Tab.0.center" timestamp="1583706925384">
+    <state width="1878" height="267" key="GridCell.Tab.0.bottom/0.23.1920.1123@0.23.1920.1123" timestamp="1583779311083" />
+    <state width="1878" height="267" key="GridCell.Tab.0.center" timestamp="1583779311081">
       <screen x="0" y="23" width="1920" height="1123" />
     </state>
-    <state width="1878" height="267" key="GridCell.Tab.0.center/0.23.1920.1123@0.23.1920.1123" timestamp="1583706925384" />
-    <state width="1878" height="267" key="GridCell.Tab.0.left" timestamp="1583706925384">
+    <state width="1878" height="267" key="GridCell.Tab.0.center/0.23.1920.1123@0.23.1920.1123" timestamp="1583779311081" />
+    <state width="1878" height="267" key="GridCell.Tab.0.left" timestamp="1583779311080">
       <screen x="0" y="23" width="1920" height="1123" />
     </state>
-    <state width="1878" height="267" key="GridCell.Tab.0.left/0.23.1920.1123@0.23.1920.1123" timestamp="1583706925384" />
-    <state width="1878" height="267" key="GridCell.Tab.0.right" timestamp="1583706925384">
+    <state width="1878" height="267" key="GridCell.Tab.0.left/0.23.1920.1123@0.23.1920.1123" timestamp="1583779311080" />
+    <state width="1878" height="267" key="GridCell.Tab.0.right" timestamp="1583779311082">
       <screen x="0" y="23" width="1920" height="1123" />
     </state>
-    <state width="1878" height="267" key="GridCell.Tab.0.right/0.23.1920.1123@0.23.1920.1123" timestamp="1583706925384" />
+    <state width="1878" height="267" key="GridCell.Tab.0.right/0.23.1920.1123@0.23.1920.1123" timestamp="1583779311082" />
     <state x="618" y="341" width="683" height="486" key="find.popup" timestamp="1583703546022">
       <screen x="0" y="23" width="1920" height="1123" />
     </state>
