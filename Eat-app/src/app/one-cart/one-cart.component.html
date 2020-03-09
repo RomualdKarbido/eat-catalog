@@ -3,7 +3,7 @@
   <div class="cart__btns">
     <div class="cart__btn cart__btn_back" (click)="backClicked()"><i class="mdi mdi-arrow-left"></i></div>
     <a class="cart__btn cart__btn_add" (click)="openmodal()"><i class="mdi mdi-plus"></i></a>
-    <a class="cart__btn cart__btn_edit" (click)="editCart(sortresult.Id)"><i class="mdi mdi-playlist-edit"></i></a>
+    <a class="cart__btn cart__btn_edit" *ngIf="roleEdit"  (click)="editCart(sortresult.Id)"><i class="mdi mdi-playlist-edit"></i></a>
   </div>
 
   <div class="cart__left">

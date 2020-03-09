@@ -20,7 +20,7 @@ import { Location } from '@angular/common';
 export class OneCartComponent implements OnInit {
 
 
-
+  public roleEdit = false;
   private idCart: any;
   private idCartparams: any;
   public localtimeArr: any = [];
@@ -82,8 +82,18 @@ export class OneCartComponent implements OnInit {
      this.getJsonService.editCartServ(id);
   }
 
+  getRole() {
+    const localMaeil = localStorage.getItem('ml');
+    if (localMaeil === 'robindranat@gmail.com') {
+      this.roleEdit = true;
+    }
+  }
+
 
   ngOnInit() {
+    this.getRole();
+
+
   }
 
 }

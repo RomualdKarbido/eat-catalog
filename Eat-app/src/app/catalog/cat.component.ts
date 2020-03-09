@@ -1,10 +1,9 @@
-import {Component, Injectable, OnInit, ViewChild, ChangeDetectorRef, Input} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 import {CatfilterComponent} from './catfilter/catfilter.component';
 import {UserinfoService} from '../userinfo.service';
-import {Router, ActivatedRoute} from '@angular/router';
-import {AngularFireDatabase} from 'angularfire2/database';
 import {CatserviceService} from './catservice.service';
+import {AllserviceService} from '../services/allservice.service';
 
 
 // import {CatItem} from './cartlist.model';
@@ -17,7 +16,8 @@ import {CatserviceService} from './catservice.service';
 
 export class CatComponent implements OnInit {
 
-
+  public modaVisible = false;
+  public openModalId = null;
   public activeItem: string;
   public modaldays = [
     {name: 'Пн', value: 'day1'},
@@ -34,17 +34,15 @@ export class CatComponent implements OnInit {
   public localtimeArr: any = [];
   public preloader: boolean;
   public bigcart: number;
-  public bigcartMarkerOn = false;
-  public bigcartMarkerOff = true;
   public stopinterscroll = false;
   public result = [];
   public resultIng = [];
 
-  //refactoring
-  private CatList = [];
-  private CatListId = [];
+  // refactoring
+  public CatList = [];
+  public CatListId = [];
   public viewCartList = [];
-  private countVievCart: number = 0;
+  public countVievCart: number = 0;
   public alMasNew = [];
 
 
@@ -54,12 +52,13 @@ export class CatComponent implements OnInit {
 
   constructor(
     public userinfo: UserinfoService,
-    public catservice: CatserviceService
+    public catservice: CatserviceService,
+    public allService: AllserviceService
   ) {
   }
 
 
-  //получаем все карточки и преобразуем их
+  // получаем все карточки и преобразуем их
   parseCatList() {
     this.CatList = [];
     this.preloader = true;
@@ -83,7 +82,7 @@ export class CatComponent implements OnInit {
     this.countVievCart = this.countVievCart + 6;
   }
 
-  //изменяем все карточки
+  // изменяем все карточки
   upgradeListCatalog(cart) {
     cart.Ingredients = cart.Ingredients.split('\\n');
     for (let d = 0; d < cart.Ingredients.length; d++) {
@@ -99,13 +98,13 @@ export class CatComponent implements OnInit {
 
 
   public FilteredData() {
-    //поиск по названию и ингредиентам
+    // поиск по названию и ингредиентам
     if (this.catFilterComponent.titleFilterValue || this.catFilterComponent.selectedCategory) {
       this.viewCartList = [];
       this.result = [];
       this.resultIng = [];
-      this.alMasNew = this.CatList; //массив всех элементов
-      //поиск
+      this.alMasNew = this.CatList; // массив всех элементов
+      // поиск
       if (this.catFilterComponent.titleFilterValue && this.catFilterComponent.titleFilterValue.length > 2) {
         this.result = this.alMasNew.filter(x => x.Name.toLowerCase()
           .indexOf(this.catFilterComponent.titleFilterValue.toLocaleLowerCase()) != -1);
@@ -180,74 +179,21 @@ export class CatComponent implements OnInit {
     this.stopinterscroll = false;
   }
 
-  resizecart(id) {
-
-    if (this.bigcart == id) {
-      this.bigcart = null;
-      this.bigcartMarkerOn = false;
-      this.bigcartMarkerOff = true;
-      if (window.innerWidth > 747) {
-        this.enebleItem();
-      }
-
-    } else {
-      this.bigcart = id;
-      this.bigcartMarkerOn = true;
-      this.bigcartMarkerOff = false;
-      if (window.innerWidth > 747) {
-        this.disabledItev(id);
-      }
-    }
-
+  openModalItem(id) {
+    this.modaVisible = true;
+    this.openModalId = id;
   }
 
-  disabledItev(id) {
-    this.enebleItem();
-    let ArrallDom = document.getElementsByClassName('cat__item');
-    let countEl = 1;
 
-    for (let i = 0; i < ArrallDom.length; i++) {
-      if (ArrallDom[i].id == id) {
-        //для планшетов
-        if (countEl == 1 && window.innerWidth <= 1199) {
-          ArrallDom[i + 1].classList.add('disabled');
-
-        }
-        if (countEl == 2 && window.innerWidth <= 1199) {
-          ArrallDom[i - 1].classList.add('disabled');
-        }
-
-        //для широких экранов
-        if (countEl == 1 && window.innerWidth > 1199) {
-          ArrallDom[i + 1].classList.add('disabled');
-          ArrallDom[i + 2].classList.add('disabled');
-        }
-        if (countEl == 2 && window.innerWidth > 1199) {
-          ArrallDom[i - 1].classList.add('disabled');
-          ArrallDom[i + 1].classList.add('disabled');
-        }
-        if (countEl == 3 && window.innerWidth > 1199) {
-          ArrallDom[i - 1].classList.add('disabled');
-          ArrallDom[i - 2].classList.add('disabled');
-        }
-      }
-      countEl++;
-      if (countEl == 3 && window.innerWidth <= 1199) {
-        countEl = 1;
-      }
-      if (countEl == 4 && window.innerWidth > 1199) {
-        countEl = 1;
-      }
-    }
-  }
 
 
   enebleItem() {
-    let ArrallDom = document.getElementsByClassName('cat__item');
+    const ArrallDom = document.getElementsByClassName('cat__item');
     for (let i = 0; i < ArrallDom.length; i++) {
       ArrallDom[i].classList.remove('disabled');
     }
   }
+
 
   switchtabs(id: string): void {
     if (this.activeItem == id) {
@@ -288,5 +234,10 @@ export class CatComponent implements OnInit {
   ngOnInit() {
     this.parseCatList();
     this.preloader = true;
+    this.allService.modalClose.subscribe(x => {
+      if (x) {
+        this.modaVisible = false;
+      }
+  });
   }
 }

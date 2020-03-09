@@ -27,8 +27,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     {name: 'Воскресенье', nameshort: 'Вс', value: 'day7'}
   ];
 
-  private eatMassAll: any = [];
-  private massForWeek = [];
+  public eatMassAll: any = [];
+  public massForWeek = [];
   public roureday: string;
   public cartparams: any;
   public newArrDay: any[];
@@ -138,7 +138,7 @@ export class MenuComponent implements OnInit, OnDestroy {
         this.db.database.ref('/Users/' + this.userId + '/mymenu/' + dayNum).once('value').then(day => {
           let daylist = day.val();
           let targetday = daylist.indexOf(id);
-          if (daylist.length == 1) {
+          if (daylist.length === 1) {
             daylist[0] = -1;
             dataToSave[dayNum] = daylist;
             this.db.database.ref('Users/' + this.userId + '/mymenu/').update(dataToSave);
@@ -169,7 +169,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.printver = !this.printver;
   }
 
-  //модалка
+  // модалка
   addItemForDifferentrDay(dayNum) {
     this.userinfoservice.addItem(dayNum, this.addId);
     this.closemodal();

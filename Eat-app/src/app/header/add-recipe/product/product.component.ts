@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
-import { ProductItem } from 'src/app/models/product-item';
+import {Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input} from '@angular/core';
+import {ProductItem} from 'src/app/models/product-item';
 
 @Component({
   selector: 'app-product',
@@ -12,14 +12,11 @@ export class ProductComponent implements OnInit {
   @Input() dataItem: ProductItem;
   @Output() remooveLine: EventEmitter<number> = new EventEmitter<number>();
   @Output() addLine: EventEmitter<number> = new EventEmitter<number>();
-  
 
+  public idElement = null;
 
-
-
-
-
-  constructor() { }
+  constructor() {
+  }
 
 
   remooveitem(id) {
@@ -27,9 +24,11 @@ export class ProductComponent implements OnInit {
       this.remooveLine.emit(id);
     }
   }
+
   addInem() {
     this.addLine.emit(null);
   }
+
   ngOnInit() {
 
   }

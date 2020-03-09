@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
-import {TestComponent} from './test/test.component';
+
 
 import {AppComponent} from './app.component';
 import {CatComponent} from './catalog/cat.component';
@@ -26,13 +26,13 @@ import * as firebase from 'firebase';
 import {AddRecipeComponent} from './header/add-recipe/add-recipe.component';
 import {ProductComponent} from './header/add-recipe/product/product.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {ModalItemComponent} from './modal-item/modal-item.component';
 
 
 firebase.initializeApp(environment.firebase);
 
 const appRoutes: Routes = [
   {path: 'cart/:id', component: OneCartComponent},
-  {path: 'test', component: TestComponent},
   {path: 'menu/:day', component: MenuComponent},
   {path: 'add_recipe', component: AddRecipeComponent},
   {path: '', pathMatch: 'full', component: CatComponent},
@@ -41,19 +41,19 @@ const appRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CatComponent,
-    CatfilterComponent,
-    TopmenuComponent,
-    OneCartComponent,
-    MenuComponent,
-    TestComponent,
-    AddRecipeComponent,
-    ProductComponent
-  ],
+    declarations: [
+        AppComponent,
+        CatComponent,
+        CatfilterComponent,
+        TopmenuComponent,
+        OneCartComponent,
+        MenuComponent,
+        AddRecipeComponent,
+        ProductComponent,
+        ModalItemComponent
+    ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     MatSelectModule,
     HttpClientModule,

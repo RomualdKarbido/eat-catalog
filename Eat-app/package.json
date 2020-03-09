@@ -4,10 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev:ssr": "ng run my-sassy-app:serve-ssr",
+    "serve:ssr": "node dist/my-sassy-app/server/main.js",
+    "build:ssr": "ng build --prod && ng run my-sassy-app:server:production",
+    "prerender": "ng run my-sassy-app:prerender"
   },
   "private": true,
   "dependencies": {

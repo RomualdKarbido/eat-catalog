@@ -1,1 +1,14 @@
-<p>modal-item works!</p>
+<div class="modal__wrap">
+  <div class="modal">
+    <div>{{openModalId}}</div>
+    <div (click)="coloseModal()">закрыть</div>
+    <div class="modal__body">
+      <div>{{itemInfo.Category}}</div>
+      <div>{{itemInfo.Comment}}</div>
+      <div>{{itemInfo.Ingredients}}</div>
+      <div>{{itemInfo.Name}}</div>
+      <div>{{itemInfo.Time}}</div>
+    </div>
+  </div>
+</div>
+

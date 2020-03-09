@@ -4,14 +4,15 @@
   <div class="preloader__status"></div>
 </div>
 
+<app-modal-item *ngIf="modaVisible" [openModalId]="openModalId"></app-modal-item>
 
 
 
 <div class="cat" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="50" [infiniteScrollDisabled]="stopinterscroll" (scrolled)="onScroll()" *ngIf="viewCartList.length > 0">
-  <div class="cat__item" id="{{item.Id}}" [class.active]="item.Id == activeItem" [class.big]="item.Id == bigcart" *ngFor="let item of viewCartList; trackBy: trackByFn">
+  <div class="cat__item" id="{{item.Id}}" [class.active]="item.Id == activeItem" [class.big]="item.Id == bigcart" *ngFor="let item of viewCartList; ">
     <div class="cat__category">{{item.Category}} {{item.Id}}</div>
     <div class="cat__img" [ngStyle]="{'background-image': item.Img}">
-      <div class="cat__img-bg" (click)="resizecart(item.Id)"></div>
+      <div class="cat__img-bg" (click)="openModalItem(item.Id)"></div>
       <div class="cat__btn">
         <div [routerLink]="['/cart', item.Id]" class="cat__btn-size"><i class="mdi mdi-link"></i></div>
         <div class="cat__btn-add" (click)="openmodal(item.Name, item.Id)"><i class="mdi mdi-plus"></i></div>
@@ -23,7 +24,7 @@
     </div>
     <div class="cat__tabs">
       <div class="cat__tab cat__tab_one">
-        <div class="cat__title" (click)="resizecart(item.Id)">{{item.Name}}</div>
+        <div class="cat__title" (click)="openModalItem(item.Id)">{{item.Name}}</div>
         <div class="cat__title-mini">Ингредиенты</div>
         <div class="cat__list">
           <div class="cat__list-item" *ngFor="let product of item.Ingredients">
@@ -34,7 +35,7 @@
         </div>
       </div>
       <div class="cat__tab cat__tab_two">
-        <div class="cat__title" (click)="resizecart(item.Id)">{{item.Name}}</div>
+        <div class="cat__title" (click)="openModalItem(item.Id)">{{item.Name}}</div>
         <div class="cat__title-mini">Приготовление: <span>{{item.Time}} мин</span></div>
         <div class="cat__text cat__text_big">
           {{item.Comment}}
@@ -46,6 +47,23 @@
           {{item.Comment.substring(0, 300) + ' ...'}}
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="cart__modal-wrap" *ngIf="modal && CatList.length > 0">
+  <div class="cart__modal">
+    <div class="cart__modal-close" (click)="closemodal()"><i class="mdi mdi-close"></i></div>
+    <div class="cart__modal-title">{{modalName}}</div>
+    <div class="cart__modal-text">В какой день добавить блюдо?</div>
+
+    <div class="cart__modal-week">
+      <div class="cart__modal-day" *ngFor="let day of modaldays" (click)="addMineMenu(day.value)">
+        {{day.name}}
+      </div>
+
     </div>
   </div>
 </div>
