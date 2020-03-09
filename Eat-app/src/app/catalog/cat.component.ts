@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 
 import {CatfilterComponent} from './catfilter/catfilter.component';
 import {UserinfoService} from '../userinfo.service';
-import {CatserviceService} from './catservice.service';
+import {CatserviceService} from '../services/catservice.service';
 import {AllserviceService} from '../services/allservice.service';
 
 
@@ -185,8 +185,6 @@ export class CatComponent implements OnInit {
   }
 
 
-
-
   enebleItem() {
     const ArrallDom = document.getElementsByClassName('cat__item');
     for (let i = 0; i < ArrallDom.length; i++) {
@@ -211,11 +209,12 @@ export class CatComponent implements OnInit {
 
   closemodal() {
     this.modal = false;
+    this.allService.addDay(null);
   }
 
   addMineMenu(dayNum) {
     this.userinfo.addItem(dayNum, this.modalId);
-    this.modal = false;
+    this.closemodal();
     let localtime = localStorage.getItem(dayNum);
     if (localtime) {
       this.localtimeArr = localtime.split(',');
@@ -238,6 +237,13 @@ export class CatComponent implements OnInit {
       if (x) {
         this.modaVisible = false;
       }
-  });
+    });
+    this.allService.addDayForModal.subscribe((x: any) => {
+      console.log('xxxxx', x);
+      if (x !== null) {
+        this.openmodal(x.name, x.id);
+      }
+    });
+
   }
 }

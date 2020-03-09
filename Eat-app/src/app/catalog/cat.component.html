@@ -70,17 +70,3 @@
 
 
 
-<div class="cart__modal-wrap" *ngIf="modal && CatList.length > 0">
-  <div class="cart__modal">
-    <div class="cart__modal-close" (click)="closemodal()"><i class="mdi mdi-close"></i></div>
-    <div class="cart__modal-title">{{modalName}}</div>
-    <div class="cart__modal-text">В какой день добавить блюдо?</div>
-
-    <div class="cart__modal-week">
-      <div class="cart__modal-day" *ngFor="let day of modaldays" (click)="addMineMenu(day.value)">
-        {{day.name}}
-      </div>
-
-    </div>
-  </div>
-</div>

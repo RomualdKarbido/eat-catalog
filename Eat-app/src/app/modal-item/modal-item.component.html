@@ -1,14 +1,47 @@
 <div class="modal__wrap">
   <div class="modal">
-    <div>{{openModalId}}</div>
-    <div (click)="coloseModal()">закрыть</div>
-    <div class="modal__body">
-      <div>{{itemInfo.Category}}</div>
-      <div>{{itemInfo.Comment}}</div>
-      <div>{{itemInfo.Ingredients}}</div>
-      <div>{{itemInfo.Name}}</div>
-      <div>{{itemInfo.Time}}</div>
+
+    <div (click)="coloseModal()" class="modal__close"><i class="mdi mdi-close"></i></div>
+    <div class="modal__body cart">
+
+
+      <div class="cart__btns">
+        <a class="cart__btn cart__btn_add" (click)="openmodal()"><i class="mdi mdi-plus"></i></a>
+      </div>
+
+      <div class="cart__left">
+        <div class="cart__img" [ngStyle]="{'background-image': itemInfo.Img}"></div>
+        <div class="cart__time">{{itemInfo.Time}} мин.</div>
+      </div>
+      <div class="cart__right">
+        <div class="cart__title">{{itemInfo.Name}} </div>
+        <div class="cart__category">
+          <div class="cart__category-value">
+            {{itemInfo.Category}}
+            {{itemInfo.Id}}
+          </div>
+        </div>
+        <div class="cart__text">
+          <div class="cart__text-title">Приготовление: <span>{{itemInfo.Time}} мин.</span></div>
+          <div class="cart__text-text" *ngFor="let comm of itemInfo.Comment">
+            {{comm}}
+          </div>
+        </div>
+        <div class="cart__list">
+          <div class="cart__text-title">Ингредиенты</div>
+          <div class="cart__text-ing" *ngFor="let product of itemInfo.Ingredients">
+            <div class="cart__text-ing-title">{{product[0]}} </div>
+            <div class="cart__text-ing-value">{{product[1]}} </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
+
+
+
   </div>
 </div>
 

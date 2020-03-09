@@ -1,14 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetJsonService } from '../get-json.service';
 import { UserinfoService } from '../userinfo.service';
 import { Location } from '@angular/common';
 
-
-
-
-
-// import {AngularFireDatabase} from 'angularfire2/database';
 
 
 @Component({
@@ -18,6 +13,8 @@ import { Location } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class OneCartComponent implements OnInit {
+
+
 
 
   public roleEdit = false;
@@ -45,9 +42,6 @@ export class OneCartComponent implements OnInit {
     private location: Location,
   ) {
 
-    this.idCartparams = this.route.params;
-    this.idCart = this.idCartparams.value.id;
-    this.showConfigResponse();
   }
   showConfigResponse() {
     this.getJsonService.getCatItem(this.idCart)
@@ -91,9 +85,11 @@ export class OneCartComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.idCartparams = this.route.params;
+    this.idCart = this.idCartparams.value.id;
+    this.showConfigResponse();
     this.getRole();
-
-
   }
 
 }

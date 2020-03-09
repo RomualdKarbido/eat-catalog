@@ -1,8 +1,9 @@
 export interface Recepi {
     Category: string;
-    Comment: string;
+    Comment: any;
     Id: number;
-    Ingredients: string;
+    Ingredients: any;
     Name: string;
     Time: string;
+    Img: string
 }

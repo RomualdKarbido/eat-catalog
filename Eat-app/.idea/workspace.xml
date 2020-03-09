@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbb89bee-daa2-400c-8745-9a58d0471383" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/services/allservice.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scss/_modal.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/catalog/cat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/catalog/cat.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/catalog/cat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/catalog/cat.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/catalog/catservice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/catalog/catservice.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/header/add-recipe/product/product.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/header/add-recipe/product/product.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/menu/menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/menu/menu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/one-cart/one-cart.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/one-cart/one-cart.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/catalog/catservice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/catservice.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/header/add-recipe/add-recipe.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/header/add-recipe/add-recipe.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models/recepi.model.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models/recepi.model.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/one-cart/one-cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/one-cart/one-cart.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/test/test.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/test/test.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modal-item/modal-item.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/test/test.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/test/testsercvice.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/allservice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/allservice.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/_modal.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +54,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/services" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/src" />
       <recent name="$PROJECT_DIR$" />
@@ -152,7 +143,7 @@
       <workItem from="1583656057258" duration="11476000" />
       <workItem from="1583701542967" duration="2768000" />
       <workItem from="1583704561289" duration="1967000" />
-      <workItem from="1583706656687" duration="9420000" />
+      <workItem from="1583706656687" duration="15040000" />
     </task>
     <servers />
   </component>

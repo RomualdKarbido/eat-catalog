@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input} from '@angular/core';
 import {ProductItem} from 'src/app/models/product-item';
 import {Recepi} from 'src/app/models/recepi.model';
-import {CatserviceService} from '../../catalog/catservice.service';
+import {CatserviceService} from '../../services/catservice.service';
 // import {Import} from '@angular/compiler-cli/src/ngtsc/host';
 
 
