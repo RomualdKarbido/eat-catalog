@@ -34,7 +34,7 @@
     "angular2-useful-swiper": "^8.0.1-beta.1",
     "angularfire2": "^5.4.2",
     "core-js": "^3.6.4",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "firebase": "^7.10.0",
     "lazysizes": "^5.2.0",
     "ngx-infinite-scroll": "^8.0.1",
